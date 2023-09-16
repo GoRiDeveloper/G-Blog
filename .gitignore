@@ -1,0 +1,4 @@
+node_modules
+.env
+entity.relation.drawio
+package-lock.json
