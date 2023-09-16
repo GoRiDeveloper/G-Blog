@@ -1,5 +1,5 @@
+import z from "zod";
 import type { Repository } from "typeorm";
-import { z } from "zod";
 import type { User } from "./user.entity";
 import { loginSchema } from "./user.schema";
 
@@ -21,5 +21,5 @@ export type RegisterResult = {
   user: User;
   token: string;
 };
-loginSchema.spa;
+
 export type LoginType = z.infer<typeof loginSchema>;

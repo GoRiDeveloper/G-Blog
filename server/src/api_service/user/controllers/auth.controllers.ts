@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 import { catchAsync } from "../../../utils/catch.async";
 import { HTTP_CODES } from "../../../constants/http.codes.constants";
-import { userService } from "../../../services/factory/entities.factory";
+import { userService } from "../../../services/index";
 import { SUCCESS_STATUS } from "../../../constants/success.constants";
 
 export const signIn = catchAsync(

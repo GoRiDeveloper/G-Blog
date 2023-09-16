@@ -55,8 +55,8 @@ export class EntityFactory {
       }),
       ...(relationAttrs && {
         relations: relationAttrs,
-      })
-      ...(extras && extras)
+      }),
+      ...(extras && extras),
     });
 
     if (error && !entity)
