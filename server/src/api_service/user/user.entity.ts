@@ -9,7 +9,7 @@ import {
 import { type Email, UserRole } from "./user.types";
 import { Post } from "../post/post.entity";
 import { GlobalStatus } from "../../types/global.types";
-import { hashPass } from "./utils/bcrypt";
+import { getHashPass } from "./plugins/encrypt.plugin";
 
 @Entity({ name: "users" })
 export class User extends BaseEntity {
@@ -52,6 +52,6 @@ export class User extends BaseEntity {
 
   @BeforeInsert()
   async hashPass() {
-    this.password = await hashPass(this.password);
+    this.password = await getHashPass(this.password);
   }
 }

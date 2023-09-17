@@ -1,9 +1,10 @@
 import type { Repository, InsertResult } from "typeorm";
+import type { EntityInterface } from "../../types/global.types";
 import { AppError } from "../../utils/app.error";
 import { HTTP_ERROR_CODES } from "../../constants/http.codes.constants";
 import { ERROR_MESSAGES } from "../../constants/error.constants";
 
-export class EntityFactory {
+export class EntityFactory implements EntityInterface {
   private readonly entityRepository: Repository<any>;
 
   constructor(repository: Repository<any>) {
@@ -26,35 +27,37 @@ export class EntityFactory {
 
   async findAndCountAll(
     filters: object,
-    attrs: object | false,
-    relationAttrs: object | false
+    attrs?: object | false,
+    relations?: object | false,
+    extras?: object
   ): Promise<[any[], number]> {
     return await this.entityRepository.findAndCount({
       where: filters,
       ...(attrs && {
         select: attrs,
       }),
-      ...(relationAttrs && {
-        relations: relationAttrs,
+      ...(relations && {
+        relations,
       }),
+      ...extras,
     });
   }
 
   async findOne(
     filters: object,
-    attrs: object | false,
-    relationAttrs: object | false,
-    extras: object | false,
-    error: boolean,
-    errorMsg: string | false
+    attrs?: object | false,
+    relations?: object | false,
+    extras?: object | false,
+    error?: boolean,
+    errorMsg?: string | false
   ): Promise<object | null> {
     const entity = await this.entityRepository.findOne({
       where: filters,
       ...(attrs && {
         select: attrs,
       }),
-      ...(relationAttrs && {
-        relations: relationAttrs,
+      ...(relations && {
+        relations,
       }),
       ...(extras && extras),
     });

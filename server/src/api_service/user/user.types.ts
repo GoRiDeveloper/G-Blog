@@ -16,10 +16,8 @@ export enum UserStatus {
 }
 
 export type UserRepository = Repository<User>;
-
 export type RegisterResult = {
   user: User;
   token: string;
 };
-
 export type LoginType = z.infer<typeof loginSchema>;
