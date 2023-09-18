@@ -1,9 +1,10 @@
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 import { HTTP_ERROR_CODES } from "../../constants/http.codes.constants";
 import { ERROR_STATUS, ERROR_TYPES } from "../../constants/error.constants";
 import { mode, modes } from "../../config/config";
 import { sendErrorDev, sendErrorProd } from "./error.controller";
 import {
+  handleBcryptArgsRequired,
   handleCastError22001,
   handleCastError22P02,
   handleCastError2305,
@@ -41,6 +42,8 @@ export const globalErrorHandler = (
       error = handleSequelizeDbError();
     if (err.code === ERROR_TYPES.typeORMDuplicate)
       error = handleTORMDuplicate(err.detail);
+    if (err.message === ERROR_TYPES.bcryptArgsRequired)
+      error = handleBcryptArgsRequired();
     if (err.parent?.code === ERROR_TYPES.sequelizeValidation)
       error = handleSequelizeValidatonError(err.errors);
 

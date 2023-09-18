@@ -5,6 +5,7 @@ import { HTTP_ERROR_CODES } from "../../constants/http.codes.constants";
 //import { Error } from "./error.entity";
 
 export const sendErrorDev = async (err: AppErrorProd, res: Response) => {
+  console.log(err);
   if (err.query) err.query = ERROR_STATUS.UNAUTHORIZED;
 
   // await Error.create({

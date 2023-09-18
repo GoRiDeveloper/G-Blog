@@ -26,6 +26,12 @@ export const handleTORMDuplicate = (detail: string) =>
     HTTP_ERROR_CODES.BAD_REQUEST
   );
 
+export const handleBcryptArgsRequired = () =>
+  new AppError(
+    ERROR_MESSAGES.BCRYPT_ARGS_REQUIRED,
+    HTTP_ERROR_CODES.INTERNAL_SERVER
+  );
+
 export const handleSequelizeValidatonError = (errors: [any]) => {
   const cleanErrors = errors.map((error) => {
     const message = `${ERROR_MESSAGES.KEY_VALUE_INVALID} Clave (${error.path}) / Valor (${error.value}).`;

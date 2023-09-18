@@ -1,6 +1,6 @@
-import { type Express, Request } from "express";
-import { type Record } from "zod";
-import { type User } from "../../entities";
+import type { Express, Request } from "express";
+import type { Record } from "zod";
+import type { User } from "../../entities";
 
 declare global {
   namespace Express {

@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { User } from "../user/user.entity";
+import { Comment } from "../comment/comment.entity";
 import { GlobalStatus } from "../../types/global.types";
 import { PostImg } from "../post_img/post.img.entity";
 

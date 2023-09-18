@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { signIn } from "../controllers/auth.controllers";
+import { signIn, signUp } from "../controllers/auth.controllers";
 import { schemaValidator } from "../../../middlewares/schema.middleware";
 import { loginSchema, userSchema } from "../user.schema";
 import { upload } from "../../../middlewares/multer.middleware";
@@ -15,7 +15,7 @@ authRouter.post(
   "/sign-up",
   upload.single("profileImgUrl"),
   schemaValidator(generateSchema(DEEP_WHERE_VALIDATE_SCHEMA.body, userSchema)),
-  signIn
+  signUp
 );
 /*
   Ruta para iniciar sesión, con middleware para validar el cuerpo de los datos de inicio de sesión y controlador

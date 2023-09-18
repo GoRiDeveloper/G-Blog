@@ -1,6 +1,7 @@
 import {
   BaseEntity,
   BeforeInsert,
+  BeforeUpdate,
   Column,
   Entity,
   OneToMany,
@@ -8,6 +9,7 @@ import {
 } from "typeorm";
 import { type Email, UserRole } from "./user.types";
 import { Post } from "../post/post.entity";
+import { Comment } from "../comment/comment.entity";
 import { GlobalStatus } from "../../types/global.types";
 import { getHashPass } from "./plugins/encrypt.plugin";
 
@@ -25,14 +27,20 @@ export class User extends BaseEntity {
   @Column({ type: "text" })
   description: string;
 
-  @Column({ type: "text", select: false })
+  @Column({ type: "text" })
   password: string;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async hashPass() {
+    this.password = await getHashPass(this.password);
+  }
 
   @Column({ type: "date", nullable: true })
   passwordChangedAt: string;
 
   @Column({ type: "enum", default: UserRole.user, enum: UserRole })
-  role: string;
+  role: UserRole;
 
   @Column({ type: "enum", default: GlobalStatus.available, enum: GlobalStatus })
   status: GlobalStatus;
@@ -49,9 +57,4 @@ export class User extends BaseEntity {
 
   @OneToMany((_type) => Comment, (comment) => comment)
   comments: Comment[];
-
-  @BeforeInsert()
-  async hashPass() {
-    this.password = await getHashPass(this.password);
-  }
 }

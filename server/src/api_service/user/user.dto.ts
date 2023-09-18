@@ -1,17 +1,16 @@
 import type { User } from "./user.entity";
+import type { UserDto } from "./user.types";
 
 export const userDto = ({
   name,
   email,
   description,
   profileImgUrl,
-  role,
-}: User) => {
+}: User): UserDto => {
   return {
     name,
     email,
     description,
     profileImgUrl,
-    role,
   };
 };

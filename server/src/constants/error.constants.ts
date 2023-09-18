@@ -34,12 +34,14 @@ export const ERROR_MESSAGES = Object.freeze({
   PASS_REQUIRED: "La contraseña es requerida.",
   PASS_STRING_FORMAT: "La contraseña debe estar en fórmato de texto.",
   STRONG_PASS:
-    "La contraseña debe tener un mínimo de 10 caracteres y debe estar contruida de la siguiente manera: Una mayúscula, una minúscula, un número y un caracter especial.",
+    "La contraseña debe tener un mínimo de 10 caracteres y debe estar construida de la siguiente manera: Una mayúscula, una minúscula, un número y un caracter especial.",
   WRONG_PASS: "Contraseña incorrecta.",
   PROFILE_IMG_URL_STRING_FORMAT:
     "La imagen de pefil debe estar en fórmato de texto.",
   PROFILE_IMG_URL_FORMAT: "La imagén de pefil debe ser una URL válida.",
   USER_NOT_EXISTS: "El usuario no se encontro.",
+  BCRYPT_ARGS_REQUIRED:
+    "Los argumentos para comprobar las contraseñas estan incompletos.",
 });
 
 export const ERROR_TYPES = Object.freeze({
@@ -47,8 +49,10 @@ export const ERROR_TYPES = Object.freeze({
   invalidTypeData: "22P02",
   duplicateValue: "2305",
   typeORMDuplicate: "23505",
+  typeORMNullValue: "23502",
   tokenExpired: "TokenExpiredError",
   invalidToken: "JsonWebTokenEror",
   sequelizeValidation: "SequelizeValidationError",
   sequelizeDatabase: "SequelizeDatabaseError",
+  bcryptArgsRequired: "data and hash arguments required",
 });
