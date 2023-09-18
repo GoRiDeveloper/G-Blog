@@ -42,6 +42,11 @@ export const ERROR_MESSAGES = Object.freeze({
   USER_NOT_EXISTS: "El usuario no se encontro.",
   BCRYPT_ARGS_REQUIRED:
     "Los argumentos para comprobar las contraseñas estan incompletos.",
+  ID_TYPE_MISMATCH: "El id debe ser un número.",
+  SESSION_NOT_STARTED: "No has iniciado sesión, ¡Por favor inicia sesión!.",
+  SESSION_USER_NOT_EXISTS: "El usuario en sesión no existe.",
+  USER_PASSWORD_CHANGE: "El usuario cambio recientemente su contraseña.",
+  DENIED_ACTION: "Acción denegada. ¡No tienes permisos!",
 });
 
 export const ERROR_TYPES = Object.freeze({

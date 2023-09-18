@@ -1,4 +1,5 @@
-import { InsertResult } from "typeorm";
+import type { InsertResult } from "typeorm";
+import type { UserRole } from "../api_service/user/user.types";
 
 export enum GlobalStatus {
   available = "available",
@@ -23,3 +24,9 @@ export interface EntityInterface {
   ): Promise<object | null>;
   update(dataToUpdate: any, listeners: boolean): Promise<any>;
 }
+
+export type DecodedAuth = {
+  id?: number;
+  role?: UserRole;
+  iat: number;
+};

@@ -2,7 +2,8 @@ import type { LoginType, AuthResult, UserRepository } from "./user.types";
 import type { User } from "./user.entity";
 import { EntityFactory } from "../../services/factory/entities.factory";
 import { uploadAndGetUrl } from "../../services/firebase/firebase.service";
-import { comparePass, getToken } from "./plugins/encrypt.plugin";
+import { comparePass } from "./plugins/encrypt.plugin";
+import { getToken } from "../../plugins/token.plugin";
 import { ERROR_MESSAGES } from "../../constants/error.constants";
 import { userDto } from "./user.dto";
 
@@ -48,5 +49,23 @@ export class UserService {
       token,
       user: userDto(user),
     };
+  }
+  // Servicio para encontrar un usuario específico.
+  async findUser(
+    filters: object,
+    attrs?: object | false,
+    relations?: object | false,
+    extras?: object | false,
+    error?: boolean,
+    errorMsg?: string
+  ): Promise<User> {
+    return (await this.entityFactory.findOne(
+      filters,
+      attrs,
+      relations,
+      extras,
+      error,
+      errorMsg
+    )) as User;
   }
 }

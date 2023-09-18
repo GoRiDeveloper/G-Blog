@@ -5,6 +5,8 @@ import { loginSchema, userSchema } from "../user.schema";
 import { upload } from "../../../middlewares/multer.middleware";
 import { generateSchema } from "../../../schema/global.schema";
 import { DEEP_WHERE_VALIDATE_SCHEMA } from "../../../constants/utils.constants";
+import { idSchema } from "../../../schema/id.schema";
+import { protect } from "../../../middlewares/auth.middleware";
 
 export const authRouter = Router();
 /* 
@@ -25,4 +27,11 @@ authRouter.post(
   "/sign-in",
   schemaValidator(generateSchema(DEEP_WHERE_VALIDATE_SCHEMA.body, loginSchema)),
   signIn
+);
+// Protección para usuarios autenticados.
+authRouter.use(protect);
+// Ruta para cambiar la contraseña en sesión.
+authRouter.patch(
+  "/password/:id",
+  schemaValidator(generateSchema(DEEP_WHERE_VALIDATE_SCHEMA.params, idSchema))
 );

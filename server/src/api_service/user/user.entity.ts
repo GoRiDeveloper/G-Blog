@@ -37,7 +37,7 @@ export class User extends BaseEntity {
   }
 
   @Column({ type: "date", nullable: true })
-  passwordChangedAt: string;
+  passwordChangedAt: Date;
 
   @Column({ type: "enum", default: UserRole.user, enum: UserRole })
   role: UserRole;
