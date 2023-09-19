@@ -6,6 +6,7 @@ import { ERROR_MESSAGES } from "../constants/error.constants";
 import { DecodedAuth } from "../types/global.types";
 import { decodedToken } from "../plugins/token.plugin";
 import { userService } from "../services";
+import { UserStatus } from "../api_service/user/user.types";
 
 export const protect = catchAsync(
   async (req: Request, _res: Response, next: NextFunction) => {
@@ -36,6 +37,11 @@ export const protect = catchAsync(
       ERROR_MESSAGES.SESSION_USER_NOT_EXISTS
     );
 
+    if ((userExists.status as string) === UserStatus.disabled)
+      throw new AppError(
+        ERROR_MESSAGES.SESSION_USER_NOT_EXISTS,
+        HTTP_ERROR_CODES.NOT_FOUND
+      );
     if (userExists.passwordChangedAt) {
       const convertToSeconds = userExists.passwordChangedAt / 1000;
       const changedTimeStamp = parseInt(convertToSeconds.toString(), 10);
@@ -75,12 +81,10 @@ export const protectAccountOwner = (
 
 export const restrictTo = (...roles: string[]) => {
   return (req: Request, _res: Response, next: NextFunction) => {
-    if (!roles.includes(req.sessionUser?.role as string)) {
-      next(
+    if (!roles.includes(req.sessionUser?.role as string))
+      return next(
         new AppError(ERROR_MESSAGES.DENIED_ACTION, HTTP_ERROR_CODES.FORBIDDEN)
       );
-      return;
-    }
     next();
   };
 };

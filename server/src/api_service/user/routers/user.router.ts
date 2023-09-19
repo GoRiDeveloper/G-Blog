@@ -10,20 +10,28 @@ import {
   protect,
   protectAccountOwner,
 } from "../../../middlewares/auth.middleware";
-import { updateUser } from "../controllers/user.controllers";
+import { disableUser, updateUser } from "../controllers/user.controllers";
 
 export const usersRouter = Router();
 // Separación de las rutas de autenticación.
 usersRouter.use("/auth", authRouter);
-// Ruta para actualizar parcialmente los datos de un usuario específico.
-usersRouter.patch(
-  "/:id",
-  schemaValidator(generateSchema(DEEP_WHERE_VALIDATE_SCHEMA.params, idSchema)),
-  schemaValidator(
-    generateSchema(DEEP_WHERE_VALIDATE_SCHEMA.body, userSchema.deepPartial())
-  ),
-  protect,
-  validUser,
-  protectAccountOwner,
-  updateUser
-);
+usersRouter
+  .use(
+    "/:id",
+    schemaValidator(
+      generateSchema(DEEP_WHERE_VALIDATE_SCHEMA.params, idSchema)
+    ),
+    protect,
+    validUser,
+    protectAccountOwner
+  )
+  .route("/:id")
+  // Ruta para actualizar parcialmente los datos de un usuario específico.
+  .patch(
+    schemaValidator(
+      generateSchema(DEEP_WHERE_VALIDATE_SCHEMA.body, userSchema.deepPartial())
+    ),
+    updateUser
+  )
+  // Ruta para deshabilitar un usuario específico.
+  .delete(disableUser);

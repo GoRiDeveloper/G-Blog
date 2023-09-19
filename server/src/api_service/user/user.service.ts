@@ -12,6 +12,7 @@ import { comparePass } from "./plugins/encrypt.plugin";
 import { getToken } from "../../plugins/token.plugin";
 import { ERROR_MESSAGES } from "../../constants/error.constants";
 import { userDto } from "./user.dto";
+import { GlobalStatus } from "../../types/global.types";
 
 export class UserService {
   //private readonly userRepository: UserRepository;
@@ -92,5 +93,13 @@ export class UserService {
       ...data,
     };
     await this.entityFactory.update(userToUpdate, false);
+  }
+  // Servicio para deshabilitar un usuario.
+  async disableUser(id: number): Promise<void> {
+    const userToDisable = {
+      id,
+      status: GlobalStatus.disabled,
+    };
+    await this.entityFactory.update(userToDisable, false);
   }
 }

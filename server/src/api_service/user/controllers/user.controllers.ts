@@ -13,3 +13,13 @@ export const updateUser = catchAsync(
     });
   }
 );
+
+export const disableUser = catchAsync(
+  async (req: Request, res: Response, _next: NextFunction) => {
+    const { safeData } = req;
+    await userService.disableUser(safeData?.params.id);
+    return res.status(HTTP_CODES.NOT_RESPONSE).json({
+      status: SUCCESS_STATUS.SUCCESS,
+    });
+  }
+);
