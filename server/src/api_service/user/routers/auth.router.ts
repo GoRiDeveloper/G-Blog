@@ -8,11 +8,14 @@ import {
   protect,
   protectAccountOwner,
 } from "../../../middlewares/auth.middleware";
+import {
+  DEEP_WHERE_VALIDATE_SCHEMA,
+  FILE_UPLOAD_NAMES,
+} from "../../../constants/utils.constants";
 import { schemaValidator } from "../../../middlewares/schema.middleware";
 import { loginSchema, updatePasswordSchema, userSchema } from "../user.schema";
 import { upload } from "../../../middlewares/multer.middleware";
 import { generateSchema } from "../../../schema/global.schema";
-import { DEEP_WHERE_VALIDATE_SCHEMA } from "../../../constants/utils.constants";
 import { idSchema } from "../../../schema/id.schema";
 import { validUser } from "../middlewares/user.middleware";
 
@@ -23,7 +26,7 @@ export const authRouter = Router();
 */
 authRouter.post(
   "/sign-up",
-  upload.single("profileImgUrl"),
+  upload.single(FILE_UPLOAD_NAMES.profileImgUrl),
   schemaValidator(generateSchema(DEEP_WHERE_VALIDATE_SCHEMA.body, userSchema)),
   signUp
 );

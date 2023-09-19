@@ -5,7 +5,7 @@ import { HTTP_ERROR_CODES } from "../constants/http.codes.constants";
 import { ERROR_MESSAGES } from "../constants/error.constants";
 import { DecodedAuth } from "../types/global.types";
 import { decodedToken } from "../plugins/token.plugin";
-import { userService } from "../services";
+import { userService } from "../services/api_services";
 import { UserStatus } from "../api_service/user/user.types";
 
 export const protect = catchAsync(

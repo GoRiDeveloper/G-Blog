@@ -7,3 +7,10 @@ export const DEEP_WHERE_VALIDATE_SCHEMA = Object.freeze({
   params: "params",
   body: "body",
 });
+
+export const FILE_UPLOAD_NAMES = Object.freeze({
+  userPathName: "users",
+  postPathName: "posts",
+  profileImgUrl: "profileImgUrl",
+  postImgs: "postImgs",
+});

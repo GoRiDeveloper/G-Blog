@@ -12,6 +12,8 @@ import { Post } from "../post/post.entity";
 import { Comment } from "../comment/comment.entity";
 import { GlobalStatus } from "../../types/global.types";
 import { getHashPass } from "./plugins/encrypt.plugin";
+import { uploadAndGetUrl } from "../../services/firebase/firebase.service";
+import { FILE_UPLOAD_NAMES } from "../../constants/utils.constants";
 
 @Entity({ name: "users" })
 export class User extends BaseEntity {
@@ -51,6 +53,18 @@ export class User extends BaseEntity {
     name: "profile_img_url",
   })
   profileImgUrl: string;
+
+  @BeforeInsert()
+  async getImgUrl() {
+    if (this.profileImgUrl) {
+      const file: unknown = this.profileImgUrl;
+      // Función para subir la imagen y obtener la URL.
+      this.profileImgUrl = await uploadAndGetUrl(
+        file as Express.Multer.File,
+        FILE_UPLOAD_NAMES.userPathName
+      );
+    }
+  }
 
   @OneToMany((_type) => Post, (post) => post.user)
   posts: Post[];

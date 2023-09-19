@@ -6,13 +6,12 @@ import type {
   UserType,
 } from "./user.types";
 import type { User } from "./user.entity";
+import { GlobalStatus, type MulterFileType } from "../../types/global.types";
 import { EntityFactory } from "../../services/factory/entities.factory";
-import { uploadAndGetUrl } from "../../services/firebase/firebase.service";
 import { comparePass } from "./plugins/encrypt.plugin";
 import { getToken } from "../../plugins/token.plugin";
 import { ERROR_MESSAGES } from "../../constants/error.constants";
 import { userDto } from "./user.dto";
-import { GlobalStatus } from "../../types/global.types";
 
 export class UserService {
   //private readonly userRepository: UserRepository;
@@ -25,13 +24,10 @@ export class UserService {
   // Servicio para crear un usuario, subiendo la imagen de usuario si existe y creando el token de sesión.
   async createUser(
     userToCreate: User,
-    file: Express.Multer.File | undefined
+    file: MulterFileType | unknown
   ): Promise<AuthResult> {
-    if (file) {
-      // Función para subir la imagen y obtener la URL.
-      const profileImgUrl = await uploadAndGetUrl(file, "users");
-      userToCreate.profileImgUrl = profileImgUrl;
-    }
+    if (file)
+      userToCreate.profileImgUrl = file as string;
     const user = (await this.entityFactory.create(userToCreate, true)) as User;
     return {
       token: await getToken({ id: user.id, role: user.role }),

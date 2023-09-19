@@ -30,3 +30,8 @@ export type DecodedAuth = {
   role?: UserRole;
   iat: number;
 };
+export type MulterFileType = Express.Multer.File | undefined;
+export type MulterFilesType =
+  | Express.Multer.File[]
+  | { [fieldname: string]: Express.Multer.File[] }
+  | undefined;

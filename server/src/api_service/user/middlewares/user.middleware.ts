@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import { catchAsync } from "../../../utils/catch.async";
-import { userService } from "../../../services";
+import { userService } from "../../../services/api_services";
 import { ERROR_MESSAGES } from "../../../constants/error.constants";
 
 export const validUser = catchAsync(

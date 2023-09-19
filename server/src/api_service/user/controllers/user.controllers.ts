@@ -2,7 +2,7 @@ import type { Request, Response, NextFunction } from "express";
 import { catchAsync } from "../../../utils/catch.async";
 import { HTTP_CODES } from "../../../constants/http.codes.constants";
 import { SUCCESS_STATUS } from "../../../constants/success.constants";
-import { userService } from "../../../services";
+import { userService } from "../../../services/api_services";
 
 export const updateUser = catchAsync(
   async (req: Request, res: Response, _next: NextFunction) => {
