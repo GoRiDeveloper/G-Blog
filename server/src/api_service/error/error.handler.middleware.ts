@@ -35,10 +35,9 @@ export const globalErrorHandler = (
       error = handleCastError22P02();
     if (err.parent?.code === ERROR_TYPES.duplicateValue)
       error = handleCastError2305();
-    if (err.parent?.code === ERROR_TYPES.invalidToken) error = handleJWTError();
-    if (err.parent?.code === ERROR_TYPES.tokenExpired)
-      error = handleJWTExpiredError();
-    if (err.parent?.code === ERROR_TYPES.sequelizeDatabase)
+    if (err.name === ERROR_TYPES.invalidToken) error = handleJWTError();
+    if (err.name === ERROR_TYPES.tokenExpired) error = handleJWTExpiredError();
+    if (err.name === ERROR_TYPES.sequelizeDatabase)
       error = handleSequelizeDbError();
     if (err.code === ERROR_TYPES.typeORMDuplicate)
       error = handleTORMDuplicate(err.detail);

@@ -1,6 +1,5 @@
 import z from "zod";
 import { ERROR_MESSAGES } from "../../constants/error.constants";
-import { UserRole } from "./user.types";
 
 export const userSchema = z.object({
   name: z
@@ -41,7 +40,6 @@ export const userSchema = z.object({
         ),
       { message: ERROR_MESSAGES.STRONG_PASS }
     ),
-  role: z.enum([UserRole.admin, UserRole.user]).optional(),
 });
 
 export const loginSchema = z.object({
@@ -55,4 +53,24 @@ export const loginSchema = z.object({
     required_error: ERROR_MESSAGES.PASS_REQUIRED,
     invalid_type_error: ERROR_MESSAGES.PASS_STRING_FORMAT,
   }),
+});
+
+export const updatePasswordSchema = z.object({
+  currentPassword: z.string({
+    required_error: ERROR_MESSAGES.CURRENT_PASS_REQUIRED,
+    invalid_type_error: ERROR_MESSAGES.CURRENT_PASS_STRING_FORMAT,
+  }),
+  newPassword: z
+    .string({
+      required_error: ERROR_MESSAGES.NEW_PASS_REQUIRED,
+      invalid_type_error: ERROR_MESSAGES.NEW_PASS_STRING_FORMAT,
+    })
+    .trim()
+    .refine(
+      (newPassword) =>
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])(?=.{10,})/.test(
+          newPassword
+        ),
+      { message: ERROR_MESSAGES.STRONG_PASS }
+    ),
 });

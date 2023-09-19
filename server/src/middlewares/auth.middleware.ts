@@ -37,18 +37,16 @@ export const protect = catchAsync(
     );
 
     if (userExists.passwordChangedAt) {
-      const convertToSeconds = userExists.passwordChangedAt.getTime() / 1000;
+      const convertToSeconds = userExists.passwordChangedAt / 1000;
       const changedTimeStamp = parseInt(convertToSeconds.toString(), 10);
 
-      if (decoded.iat < changedTimeStamp) {
-        next(
+      if (decoded.iat < changedTimeStamp)
+        return next(
           new AppError(
             ERROR_MESSAGES.USER_PASSWORD_CHANGE,
             HTTP_ERROR_CODES.UNAUTHORIZED
           )
         );
-        return;
-      }
     }
 
     req.sessionUser = userExists;
@@ -56,6 +54,24 @@ export const protect = catchAsync(
     next();
   }
 );
+
+export const protectAccountOwner = (
+  req: Request,
+  _res: Response,
+  next: NextFunction
+) => {
+  const { user, sessionUser } = req;
+
+  if (user!.id !== sessionUser!.id)
+    return next(
+      new AppError(
+        ERROR_MESSAGES.ACCOUNT_NOT_YOURS,
+        HTTP_ERROR_CODES.UNAUTHORIZED
+      )
+    );
+
+  next();
+};
 
 export const restrictTo = (...roles: string[]) => {
   return (req: Request, _res: Response, next: NextFunction) => {

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node .",
     "start:dev": "ts-node-dev --files --respawn ./src/server.ts",
+    "start:prod": "SET NODE_ENV=production&ts-node-dev --files --respawn ./src/server.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

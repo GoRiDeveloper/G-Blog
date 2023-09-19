@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
+import type { User } from "../user.entity";
 import { catchAsync } from "../../../utils/catch.async";
 import { HTTP_CODES } from "../../../constants/http.codes.constants";
 import { userService } from "../../../services/index";
@@ -26,6 +27,16 @@ export const signIn = catchAsync(
       status: SUCCESS_STATUS.SUCCESS,
       token,
       user,
+    });
+  }
+);
+
+export const updatePassword = catchAsync(
+  async (req: Request, res: Response, _next: NextFunction) => {
+    const { safeData, user } = req;
+    await userService.updatePassword(safeData?.body, user as User);
+    return res.status(HTTP_CODES.NOT_RESPONSE).json({
+      status: SUCCESS_STATUS.SUCCESS,
     });
   }
 );

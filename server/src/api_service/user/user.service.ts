@@ -1,4 +1,10 @@
-import type { LoginType, AuthResult, UserRepository } from "./user.types";
+import type {
+  LoginType,
+  AuthResult,
+  UserRepository,
+  UpdatePasswordType,
+  UserType,
+} from "./user.types";
 import type { User } from "./user.entity";
 import { EntityFactory } from "../../services/factory/entities.factory";
 import { uploadAndGetUrl } from "../../services/firebase/firebase.service";
@@ -67,5 +73,24 @@ export class UserService {
       error,
       errorMsg
     )) as User;
+  }
+  // Servicio para actualizar tu contraseña actual.
+  async updatePassword(
+    { currentPassword, newPassword }: UpdatePasswordType,
+    user: User
+  ): Promise<void> {
+    await comparePass(currentPassword, user.password);
+    user.password = newPassword;
+    user.passwordChangedAt = Date.now();
+    await this.entityFactory.update(user, true);
+  }
+  // Servicio para actualizar información del usuario en sesión.
+  async updateUserInfo(id: number, data: UserType): Promise<void> {
+    if (!data) return;
+    const userToUpdate = {
+      id,
+      ...data,
+    };
+    await this.entityFactory.update(userToUpdate, false);
   }
 }

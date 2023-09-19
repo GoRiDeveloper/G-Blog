@@ -36,8 +36,8 @@ export class User extends BaseEntity {
     this.password = await getHashPass(this.password);
   }
 
-  @Column({ type: "date", nullable: true })
-  passwordChangedAt: Date;
+  @Column({ type: "int8", nullable: true })
+  passwordChangedAt: number;
 
   @Column({ type: "enum", default: UserRole.user, enum: UserRole })
   role: UserRole;

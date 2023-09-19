@@ -1,12 +1,20 @@
 import { Router } from "express";
-import { signIn, signUp } from "../controllers/auth.controllers";
+import {
+  signIn,
+  signUp,
+  updatePassword,
+} from "../controllers/auth.controllers";
+import {
+  protect,
+  protectAccountOwner,
+} from "../../../middlewares/auth.middleware";
 import { schemaValidator } from "../../../middlewares/schema.middleware";
-import { loginSchema, userSchema } from "../user.schema";
+import { loginSchema, updatePasswordSchema, userSchema } from "../user.schema";
 import { upload } from "../../../middlewares/multer.middleware";
 import { generateSchema } from "../../../schema/global.schema";
 import { DEEP_WHERE_VALIDATE_SCHEMA } from "../../../constants/utils.constants";
 import { idSchema } from "../../../schema/id.schema";
-import { protect } from "../../../middlewares/auth.middleware";
+import { validUser } from "../middlewares/user.middleware";
 
 export const authRouter = Router();
 /* 
@@ -33,5 +41,11 @@ authRouter.use(protect);
 // Ruta para cambiar la contraseña en sesión.
 authRouter.patch(
   "/password/:id",
-  schemaValidator(generateSchema(DEEP_WHERE_VALIDATE_SCHEMA.params, idSchema))
+  schemaValidator(generateSchema(DEEP_WHERE_VALIDATE_SCHEMA.params, idSchema)),
+  schemaValidator(
+    generateSchema(DEEP_WHERE_VALIDATE_SCHEMA.body, updatePasswordSchema)
+  ),
+  validUser,
+  protectAccountOwner,
+  updatePassword
 );

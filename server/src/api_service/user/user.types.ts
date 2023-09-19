@@ -1,7 +1,7 @@
 import z from "zod";
 import type { Repository } from "typeorm";
 import type { User } from "./user.entity";
-import { loginSchema } from "./user.schema";
+import { loginSchema, updatePasswordSchema, userSchema } from "./user.schema";
 
 export type Email = `${string}@${string}.${string}`;
 
@@ -26,4 +26,6 @@ export type UserDto = {
   description: string;
   profileImgUrl?: string;
 };
+export type UserType = z.infer<typeof userSchema>;
 export type LoginType = z.infer<typeof loginSchema>;
+export type UpdatePasswordType = z.infer<typeof updatePasswordSchema>;

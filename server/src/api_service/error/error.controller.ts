@@ -28,10 +28,12 @@ export const sendErrorProd = (err: AppErrorProd, res: Response) => {
     return res.status(err.statusCode).json({
       status: err.status,
       message: err.message,
+      errors: err?.errors,
     });
 
   return res.status(HTTP_ERROR_CODES.INTERNAL_SERVER).json({
     status: ERROR_STATUS.FAIL,
     message: ERROR_MESSAGES.SERVER_GENERIC,
+    errors: err?.errors,
   });
 };

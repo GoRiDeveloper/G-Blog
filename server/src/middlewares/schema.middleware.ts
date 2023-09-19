@@ -37,6 +37,8 @@ export const schemaValidator = (schema: z.AnyZodObject) => {
       req.safeData = results.data;
     }
 
+    if (req.safeData?.body?.password) delete req.safeData?.body?.password;
+
     next();
   };
 };
