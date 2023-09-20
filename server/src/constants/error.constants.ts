@@ -52,15 +52,16 @@ export const ERROR_MESSAGES = Object.freeze({
   CURRENT_PASS_STRING_FORMAT: "La contraseña actual debe ser un texto.",
   NEW_PASS_REQUIRED: "La nueva contraseña es requerida.",
   NEW_PASS_STRING_FORMAT: "La nueva contraseña debe ser un texto.",
-  POST_TITLE_REQUIRED: "El titulo de tu publicación es requerido.",
-  POST_TITLE_STRING_FORMAT: "El titulo de tu publicación debe ser un texto.",
+  POST_TITLE_REQUIRED: "El título de tu publicación es requerido.",
+  POST_TITLE_STRING_FORMAT: "El título de tu publicación debe ser un texto.",
   POST_TITLE_MIN:
-    "El titulo de tu publicación debe ser mínimo de 10 caracteres.",
+    "El título de tu publicación debe ser mínimo de 10 caracteres.",
   POST_CONTENT_REQUIRED: "El contenido de tu publicación es requerido.",
   POST_CONTENT_STRING_FORMAT:
     "El contenido de tu publicación debe ser un texto.",
   POST_CONTENT_MIN:
-    "El contenido de tu publicación debe ser mínimo de 30 caracteres.",
+    "El contenido de tu publicación debe ser mínimo de 50 caracteres.",
+  MULTER_EXCEEDED_LIMIT: "El límite de imágenes en tu publicación, es de 5",
 });
 
 export const ERROR_TYPES = Object.freeze({
@@ -74,4 +75,5 @@ export const ERROR_TYPES = Object.freeze({
   sequelizeValidation: "SequelizeValidationError",
   sequelizeDatabase: "SequelizeDatabaseError",
   bcryptArgsRequired: "data and hash arguments required",
+  multerExceededLimit: "LIMIT_UNEXPECTED_FILE",
 });

@@ -15,5 +15,5 @@ export const postSchema = z.object({
       invalid_type_error: ERROR_MESSAGES.POST_CONTENT_STRING_FORMAT,
     })
     .trim()
-    .min(30, { message: ERROR_MESSAGES.POST_CONTENT_MIN }),
+    .min(50, { message: ERROR_MESSAGES.POST_CONTENT_MIN }),
 });

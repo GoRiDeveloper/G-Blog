@@ -1,5 +1,5 @@
 import z from "zod";
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 import { AppError } from "../utils/app.error";
 import { HTTP_ERROR_CODES } from "../constants/http.codes.constants";
 
@@ -36,8 +36,6 @@ export const schemaValidator = (schema: z.AnyZodObject) => {
     } else {
       req.safeData = results.data;
     }
-
-    if (req.safeData?.body?.password) delete req.safeData?.body?.password;
 
     next();
   };

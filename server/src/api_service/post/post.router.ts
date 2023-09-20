@@ -17,10 +17,10 @@ postRouter
   .get(findAllPosts)
   // Ruta para hacer una nueva publicación.
   .post(
+    upload.array(FILE_UPLOAD_NAMES.postImgs, 5),
     protect,
     schemaValidator(
       generateSchema(DEEP_WHERE_VALIDATE_SCHEMA.body, postSchema)
     ),
-    upload.array(FILE_UPLOAD_NAMES.postImgs, 5),
     createPost
   );

@@ -10,6 +10,7 @@ import {
   handleCastError2305,
   handleJWTError,
   handleJWTExpiredError,
+  handleMulterExceededLimit,
   handleSequelizeDbError,
   handleSequelizeValidatonError,
   handleTORMDuplicate,
@@ -43,6 +44,8 @@ export const globalErrorHandler = (
       error = handleTORMDuplicate(err.detail);
     if (err.message === ERROR_TYPES.bcryptArgsRequired)
       error = handleBcryptArgsRequired();
+    if (err.code === ERROR_TYPES.multerExceededLimit)
+      error = handleMulterExceededLimit();
     if (err.parent?.code === ERROR_TYPES.sequelizeValidation)
       error = handleSequelizeValidatonError(err.errors);
 

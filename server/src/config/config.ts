@@ -17,6 +17,7 @@ export const jwtConfig = Object.freeze({
   secret: ENV.JWT_SECRET as string,
   expiresIn: ENV.JWT_EXPIRES_IN,
 });
+
 export const dbConfig = Object.freeze({
   type: ENV.DB_TYPE as any,
   host: ENV.DB_HOST,
@@ -33,10 +34,4 @@ export const dbConfig = Object.freeze({
   //   },
   // }),
   entities: [Error, User, Post, Comment, PostImg],
-});
-export const firebaseConfig = Object.freeze({
-  apiKey: ENV.FIREBASE_API_KEY,
-  projectId: ENV.FIREBASE_PROJECT_ID,
-  storageBucket: ENV.FIREBASE_STORAGE,
-  appId: ENV.FIREBASE_API_ID,
 });

@@ -56,7 +56,6 @@ export const protect = catchAsync(
     }
 
     req.sessionUser = userExists;
-
     next();
   }
 );

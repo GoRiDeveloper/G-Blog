@@ -26,8 +26,7 @@ export class UserService {
     userToCreate: User,
     file: MulterFileType | unknown
   ): Promise<AuthResult> {
-    if (file)
-      userToCreate.profileImgUrl = file as string;
+    if (file) userToCreate.profileImgUrl = file as string;
     const user = (await this.entityFactory.create(userToCreate, true)) as User;
     return {
       token: await getToken({ id: user.id, role: user.role }),

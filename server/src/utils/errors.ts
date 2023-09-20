@@ -32,6 +32,12 @@ export const handleBcryptArgsRequired = () =>
     HTTP_ERROR_CODES.INTERNAL_SERVER
   );
 
+export const handleMulterExceededLimit = () =>
+  new AppError(
+    ERROR_MESSAGES.MULTER_EXCEEDED_LIMIT,
+    HTTP_ERROR_CODES.BAD_REQUEST
+  );
+
 export const handleSequelizeValidatonError = (errors: [any]) => {
   const cleanErrors = errors.map((error) => {
     const message = `${ERROR_MESSAGES.KEY_VALUE_INVALID} Clave (${error.path}) / Valor (${error.value}).`;

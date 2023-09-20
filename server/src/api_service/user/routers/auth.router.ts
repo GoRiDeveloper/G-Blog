@@ -19,7 +19,7 @@ import { generateSchema } from "../../../schema/global.schema";
 import { idSchema } from "../../../schema/id.schema";
 import { validUser } from "../middlewares/user.middleware";
 
-export const authRouter = Router();
+export const authRouter: Router = Router();
 /* 
   Ruta para registro, con middleware para validar un fichero de imagen de usuario, el cuerpo del registro de usuario
   y controlador para generar ese usuario con su token.

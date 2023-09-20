@@ -12,7 +12,7 @@ import {
 } from "../../../middlewares/auth.middleware";
 import { disableUser, updateUser } from "../controllers/user.controllers";
 
-export const usersRouter = Router();
+export const usersRouter: Router = Router();
 // Separación de las rutas de autenticación.
 usersRouter.use("/auth", authRouter);
 usersRouter

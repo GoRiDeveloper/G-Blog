@@ -5,4 +5,5 @@ export const SUCCESS_STATUS = Object.freeze({
 export const SUCCESS_MESSAGES = Object.freeze({
   SERVER_CONECTED: "Servidor conectado en el siguiente puerto.",
   BD_CONNECTED: "Base de datos inicializada correctamente.",
+  POST_CREATED: "Tu publicación fue publicada con exito.",
 });

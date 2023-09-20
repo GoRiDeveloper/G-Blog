@@ -7,7 +7,11 @@ import { userService } from "../../../services/api_services";
 export const updateUser = catchAsync(
   async (req: Request, res: Response, _next: NextFunction) => {
     const { safeData } = req;
+
+    if (safeData.body.password) delete safeData.body.password;
+
     await userService.updateUserInfo(safeData?.params.id, safeData?.body);
+
     return res.status(HTTP_CODES.NOT_RESPONSE).json({
       status: SUCCESS_STATUS.SUCCESS,
     });

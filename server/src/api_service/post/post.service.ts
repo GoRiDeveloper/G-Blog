@@ -18,18 +18,18 @@ export class PostService {
     data: PostType,
     user: User,
     files: MulterFilesType
-  ): Promise<Post> {
+  ): Promise<void> {
     const post = (await this.entityFactory.create(
       { ...data, user },
-      false
+      true
     )) as Post;
     if (Array.isArray(files)) {
+      debugger;
       const postImgPromises = files.map(
         async (file: Express.Multer.File) =>
           await postImgService.postNewImg(post, file)
       );
       await Promise.all(postImgPromises);
     }
-    return post;
   }
 }
