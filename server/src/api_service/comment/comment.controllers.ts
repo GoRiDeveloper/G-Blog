@@ -12,8 +12,13 @@ import {
 
 export const findAllComments = catchAsync(
   async (_req: Request, res: Response, _next: NextFunction) => {
+    const [comments, results] = await commentService.findAllComments({
+      status: GlobalStatus.available,
+    });
     return res.status(HTTP_CODES.OK).json({
       status: SUCCESS_STATUS.SUCCESS,
+      comments,
+      results,
     });
   }
 );

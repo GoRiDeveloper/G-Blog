@@ -27,6 +27,20 @@ export class CommentService {
     };
     await this.entityFactory.create(CommentToCreate, false);
   }
+  // Servicio génerico para buscar todos los comentarios.
+  async findAllComments(
+    filters: object,
+    attrs?: object,
+    relations?: object,
+    extras?: object
+  ): Promise<[any[], number]> {
+    return await this.entityFactory.findAndCountAll(
+      filters,
+      attrs,
+      relations,
+      extras
+    );
+  }
   // Servicio génerico para buscar un comentario específico.
   async findComment(
     filters: object,
