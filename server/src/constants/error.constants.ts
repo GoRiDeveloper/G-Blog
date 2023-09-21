@@ -64,6 +64,9 @@ export const ERROR_MESSAGES = Object.freeze({
     "El contenido de tu publicación debe ser mínimo de 50 caracteres.",
   MULTER_EXCEEDED_LIMIT: "El límite de imágenes en tu publicación, es de 5",
   POST_NOT_FOUND: "La publicación que intentas buscar, no existe.",
+  COMMENT_REQUIRED: "El comentario es requerido.",
+  COMMENT_STRING_FORMAT: "El comentario debe ser un texto.",
+  COMMENT_NOT_FOUND: "El comentario no se encontro.",
 });
 
 export const ERROR_TYPES = Object.freeze({

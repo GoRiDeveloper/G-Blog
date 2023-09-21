@@ -35,3 +35,6 @@ export type MulterFilesType =
   | Express.Multer.File[]
   | { [fieldname: string]: Express.Multer.File[] }
   | undefined;
+export type DisableType = {
+  status: GlobalStatus;
+};

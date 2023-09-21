@@ -1,5 +1,5 @@
-import type { DisablePostType, PostRepository, PostType } from "./post.types";
-import type { MulterFilesType } from "../../types/global.types";
+import type { PostRepository, PostType } from "./post.types";
+import type { DisableType, MulterFilesType } from "../../types/global.types";
 import type { User } from "../user/user.entity";
 import type { Post } from "./post.entity";
 import { EntityFactory } from "../../services/factory/entity.factory";
@@ -56,10 +56,7 @@ export class PostService {
     }
   }
   // Servicio génerico para actualizar una publicación.
-  async updatePost(
-    id: number,
-    data: PostType | DisablePostType
-  ): Promise<void> {
+  async updatePost(id: number, data: PostType | DisableType): Promise<void> {
     const postToUpdate = {
       id,
       ...data,

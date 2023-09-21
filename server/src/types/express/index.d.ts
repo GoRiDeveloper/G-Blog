@@ -1,6 +1,6 @@
 import type { Express, Request } from "express";
 import type { Record } from "zod";
-import type { Post, User } from "../../entities";
+import type { Post, User, Comment } from "../../entities";
 
 declare global {
   namespace Express {
@@ -9,6 +9,7 @@ declare global {
       user?: User;
       sessionUser?: User;
       post?: Post;
+      comment?: Comment;
     }
   }
 }
