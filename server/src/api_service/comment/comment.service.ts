@@ -64,6 +64,7 @@ export class CommentService {
     id: number,
     data: CommentType | DisableType
   ): Promise<void> {
+    if (!data) return;
     const commentToUpdate = {
       id,
       ...data,
