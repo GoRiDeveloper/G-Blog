@@ -16,7 +16,7 @@ export const ERROR_MESSAGES = Object.freeze({
   VALUE_EXISTS: "El valor del campo ya existe.",
   TOKEN_UNGENERATED: "El token no se genero.",
   INVALID_TOKEN: "Token invalido o manipulado.",
-  TOKEN_EXPIRED: "El token expiro, ¡Inicia sesión nuevamente!.",
+  TOKEN_EXPIRED: "El token expiró, ¡Inicia sesión nuevamente!.",
   UNDECODED: "No se pudo decodificar.",
   SEQUELIZE_SAVE: "Hubo un error al guardar en La base de datos.",
   TYPEORM_DUPLICATE: "Valor duplicado:",
@@ -47,7 +47,8 @@ export const ERROR_MESSAGES = Object.freeze({
   SESSION_USER_NOT_EXISTS: "El usuario en sesión no existe.",
   USER_PASSWORD_CHANGE: "El usuario cambio recientemente su contraseña.",
   DENIED_ACTION: "Acción denegada. ¡No tienes permisos!",
-  ACCOUNT_NOT_YOURS: "Esta cuenta no te pertenece.",
+  ACCOUNT_NOT_YOURS:
+    "Esta acción esta protegida para la cuenta propietaria del contenido.",
   CURRENT_PASS_REQUIRED: "La contraseña actual es requerida.",
   CURRENT_PASS_STRING_FORMAT: "La contraseña actual debe ser un texto.",
   NEW_PASS_REQUIRED: "La nueva contraseña es requerida.",
@@ -62,6 +63,7 @@ export const ERROR_MESSAGES = Object.freeze({
   POST_CONTENT_MIN:
     "El contenido de tu publicación debe ser mínimo de 50 caracteres.",
   MULTER_EXCEEDED_LIMIT: "El límite de imágenes en tu publicación, es de 5",
+  POST_NOT_FOUND: "La publicación que intentas buscar, no existe.",
 });
 
 export const ERROR_TYPES = Object.freeze({

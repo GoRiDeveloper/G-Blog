@@ -7,7 +7,7 @@ import type {
 } from "./user.types";
 import type { User } from "./user.entity";
 import { GlobalStatus, type MulterFileType } from "../../types/global.types";
-import { EntityFactory } from "../../services/factory/entities.factory";
+import { EntityFactory } from "../../services/factory/entity.factory";
 import { comparePass } from "./plugins/encrypt.plugin";
 import { getToken } from "../../plugins/token.plugin";
 import { ERROR_MESSAGES } from "../../constants/error.constants";
