@@ -6,5 +6,13 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: ChildrenType) {
-    return (<div> {children} </div>);
+    return (
+        <main>
+            {children}
+            <div className="ocean">
+                <div className="wave"></div>
+                <div className="wave"></div>
+            </div>
+        </main>
+    );
 };

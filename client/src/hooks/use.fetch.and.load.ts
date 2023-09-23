@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 import type { AxiosResponse } from "axios";
 import type { AxiosCall } from "../models";

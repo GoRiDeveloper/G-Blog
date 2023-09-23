@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import type { ChildrenType } from '@/types/global.types';
+import { Providers } from "../redux/provider";
 import { AxiosInterceptor } from "@/interceptors";
 
 export const metadata: Metadata = {
@@ -15,7 +16,11 @@ export default function RootLayout({
 }: ChildrenType) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 };

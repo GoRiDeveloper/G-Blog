@@ -1,11 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { user } from "./states/";
+import type { InitAppStore } from "@/types/redux.store.types";
+import { user } from "@/redux/states/";
 
-export interface AppStore {
-  user: any;
-}
-
-export const store = configureStore<AppStore>({
+export const makeStore = configureStore<InitAppStore>({
   reducer: {
     user,
   },

@@ -1,2 +1,2 @@
-export * from "./useAsync";
-export * from "./useFetchAndLoad";
+export * from "./use.async";
+export * from "./use.fetch.and.load";
