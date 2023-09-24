@@ -7,9 +7,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: ChildrenType) {
     return (
-        <main>
+        <main className="w-screen bg-gradient-to-bl dark:from-sky-800 dark:via-purple-900 dark:to-sky-800">
             {children}
-            <div className="ocean">
+            <div className="ocean max-w-full">
                 <div className="wave"></div>
                 <div className="wave"></div>
             </div>

@@ -16,7 +16,7 @@
     bottom: -25px;
     width: 6400px;
     height: 100%;
-    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x;
+    background: url(/assets/img/backgrounds/wave.svg) repeat-x;
     animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
     transform: translate3d(0, 0, 0);
 }

@@ -16,7 +16,7 @@ export default function RootLayout({
 }: ChildrenType) {
   return (
     <html lang="en">
-      <body>
+      <body className='w-full h-screen bg-gradient-to-bl dark:from-sky-800 dark:via-purple-900 dark:to-sky-800'>
         <Providers>
           {children}
         </Providers>
