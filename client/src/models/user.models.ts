@@ -9,3 +9,7 @@ export interface UserLogged {
     profileImgUrl?: string;
   };
 }
+export interface UserLogin {
+  email: Email;
+  password: string;
+}

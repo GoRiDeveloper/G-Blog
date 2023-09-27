@@ -2,10 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+.register::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: .4rem;
+}
+
+.register::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 1px solid rgb(255 255 255 / .2);
+}
+
+.register::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}
+
+.shw-img {
+    box-shadow: 0 0 0 0.8rem #0003, 0 0 0 1rem #a1dcff59;
+}
+
 .ocean {
-    position: absolute;
     left: 0;
-    bottom: 0;
     width: 100%;
     height: 200px;
     overflow: hidden;

@@ -1,8 +1,8 @@
 import axios from "axios";
-import type { UserLogged } from "@/models/user.models";
+import type { UserLogged, UserLogin } from "@/models/user.models";
 import { loadAbort } from "../utils";
 
-export const login = (data: any) => {
+export const login = (data: UserLogin) => {
   const Controller = loadAbort();
   return {
     call: axios.post<UserLogged>("", data, { signal: Controller.signal }),

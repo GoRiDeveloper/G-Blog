@@ -1,27 +1,16 @@
-import { FieldErrors } from "react-hook-form";
+"use client"
+import type { InputProps } from "@/types";
 
-const formValidation = (errors: FieldErrors, errorKey: string) => {
-    const error = errors[errorKey];
-    return error ? <label className="error">{error?.message}</label> : "";
-};
-
-export const Input = ({ register, name, errors, label = "", type, inputProps, disabled = false, trigger }: InputProps) => {
+export const Input = ({ children, type, placeholder, required }: InputProps): JSX.Element => {
     return (
-        <div>
-            <TextField
-                required
-                disabled={disabled}
+        <fieldset className="h-[3.15rem] relative my-[1.875rem]">
+            <input
+                className="w-full h-full bg-transparent py-5 ps-5 pe-11 outline-none text-base text-white border border-white/[.2] rounded-[2.5rem] placeholder:text-white"
                 type={type}
-                error={errors && !!errors[name]}
-                id={name}
-                label={label}
-                variant="standard"
-                { ...register(name) }
-                { ...(inputProps && { inputProps }) }
-                onChange={() => trigger && trigger()}
-                fullWidth
+                placeholder={placeholder}
+                required={required}
             />
-            {errors && formValidation(errors, name)}
-        </div>
+            {children}
+        </fieldset>
     );
 };
