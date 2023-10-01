@@ -4,52 +4,63 @@ import {
   createContext,
   useState,
   useCallback,
-  useMemo,
-  type ChangeEvent
+  useMemo
 } from "react";
-import { useDispatch } from "react-redux";
-import type { ChildrenType } from "@/types";
-import type{ UserLogin } from "@/models";
+import type { ChangeInputEvent } from "@/types";
+import type{ ChildrenType, RegisterUser, UserLogin } from "@/models";
 import { createUserAdapter } from "@/adapters";
-import { useFetchAndLoad } from "@/hooks/use.fetch.and.load";
-import { createUser } from "@/redux/states/user.state";
-import { login } from "@/services/public.services";
+import { useFetchAndLoad, useUserActions } from "@/hooks";
+import { login, register } from "@/services/public.services";
+import { AxiosInterceptor } from "@/interceptors";
+
+AxiosInterceptor();
 
 export const AuthContext =
   createContext({
-    handleProfileImage: (_e: ChangeEvent<HTMLInputElement>) => {},
-    handleRegister: (_data: UserLogin) => {},
+    handleProfileImage: (_e: ChangeInputEvent) => {},
+    handleRegister: (_data: RegisterUser) => {},
+    handleLogin: (_data: UserLogin) => {},
     profileImage: "",
-    loadingRegister: false
+    loadingEndpoint: false
   });
 
 export const AuthContextProvider = ({ children }: ChildrenType) => {
+  const { setUser } = useUserActions();
   const [profileImage, setProfileImage] = useState<string>(
     "/assets/img/default-user.webp"
   );
-  const { loading: loadingRegister, callEndpoint } = useFetchAndLoad();
-  const dispatch = useDispatch();
+  const { loading: loadingEndpoint, callEndpoint } = useFetchAndLoad();
 
-  const handleProfileImage = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  const handleProfileImage = useCallback((e: ChangeInputEvent) => {
     const fileBounded = e.target.files![0];
     const filePath = URL.createObjectURL(fileBounded);
 
     setProfileImage(filePath);
   }, []);
-  const handleRegister = useCallback(async (data: UserLogin) => {
-      const user = await callEndpoint(login(data));
-      const newUser = createUserAdapter(user);
-      dispatch(createUser(newUser));
+  const handleRegister = useCallback(async (data: RegisterUser) => {
+      const user = await callEndpoint(register(data));
+      if (user) {
+        const newUser = createUserAdapter(user);
+        setUser(newUser);
+      };
+  }, []);
+  const handleLogin = useCallback(async (data: UserLogin) => {
+    const session = await callEndpoint(login(data));
+    if (session) {
+      const user = createUserAdapter(session);
+      setUser(user);
+    };
   }, []);
 
   const value = useMemo(
     () => ({
       handleProfileImage,
       handleRegister,
+      handleLogin,
       profileImage,
-      loadingRegister
+      loadingEndpoint
     }),
-    [profileImage, loadingRegister, handleProfileImage, handleRegister]
+    [profileImage, loadingEndpoint, handleProfileImage, handleRegister, handleLogin]
   );
 
   return (<AuthContext.Provider value={value}> {children} </AuthContext.Provider>);

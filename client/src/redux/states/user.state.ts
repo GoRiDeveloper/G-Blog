@@ -1,8 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { UserLogged } from "@/models/user.models";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { UserLogged } from "@/models";
 import type { Email } from "@/types";
+import {
+  saveInLocalStorage,
+  getInLocalStorage,
+  removeInLocalStorage,
+} from "@/utils";
 
-export const UserEmptyState: UserLogged = {
+const userEmptyState = {
   token: "",
   user: {
     name: "",
@@ -11,14 +16,24 @@ export const UserEmptyState: UserLogged = {
     profileImgUrl: "",
   },
 };
+const session = getInLocalStorage("user");
+const UserInitState: UserLogged = session ? session : userEmptyState;
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: UserEmptyState,
+  initialState: UserInitState,
   reducers: {
-    createUser: (_state, action) => action.payload,
-    modifyUser: (state, action) => ({ ...state, ...action.payload }),
-    resetUser: () => UserEmptyState,
+    createUser: (state, action: PayloadAction<UserLogged>) => {
+      saveInLocalStorage("user", JSON.stringify(state));
+      return action.payload;
+    },
+    modifyUser: (state, action) => {
+      return { ...state, ...action.payload };
+    },
+    resetUser: () => {
+      removeInLocalStorage("user");
+      return userEmptyState;
+    },
   },
 });
 

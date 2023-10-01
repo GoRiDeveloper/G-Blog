@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { ChildrenType } from "@/types/global.types";
+import type { ChildrenType } from "@/models";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {

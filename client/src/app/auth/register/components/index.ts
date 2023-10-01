@@ -1,1 +1,1 @@
-export * from "./register.image";
+export * from "./register.form";

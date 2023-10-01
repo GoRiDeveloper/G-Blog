@@ -1,12 +1,18 @@
 "use client";
+
 import { Provider } from "react-redux";
-import type { ChildrenType } from "@/types";
+import { SnackbarProvider } from "notistack";
+import type { ChildrenType } from "@/models";
 import { makeStore } from "./store";
+import { SnackbarConfig } from "@/utils";
 
 export const Providers = ({ children }: ChildrenType) => {
     return (
         <Provider store={makeStore}>
-            {children}
+            <SnackbarProvider>
+                <SnackbarConfig />
+                {children}
+            </SnackbarProvider>
         </Provider>
     );
 };

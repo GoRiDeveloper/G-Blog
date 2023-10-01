@@ -1,9 +1,14 @@
+import { redirect } from "next/navigation";
 import axios, {
   type AxiosRequestHeaders,
   type InternalAxiosRequestConfig,
 } from "axios";
 import { LocalStorageKeys } from "@/types";
-import { getInLocalStorage } from "@/utils/local.storage.manager";
+import {
+  SnackbarManager,
+  getInLocalStorage,
+  getValidationError,
+} from "@/utils";
 
 export const AxiosInterceptor = () => {
   const updateHeader = (req: InternalAxiosRequestConfig) => {
@@ -26,12 +31,24 @@ export const AxiosInterceptor = () => {
   axios.interceptors.response.use(
     (res) => res,
     (err) => {
-      const redirect = () => {
-        window.location.href = `/auth/`;
-      };
-      if (err.response.status === 401 || err.response.status === 403)
-        redirect();
-      if (err.response.data.error.code) "";
+      console.log(err);
+      if (err.code === "ERR_NETWORK")
+        SnackbarManager.error(getValidationError(err.code));
+
+      const toAuth = () => redirect("/auth/login");
+
+      if (err?.response?.status === 401 || err?.response?.status === 403) {
+        SnackbarManager.error(getValidationError(err?.response?.data?.message));
+        toAuth();
+      }
+      if (err?.response?.data?.errors) {
+        err?.response?.data?.errors.forEach((error: any) =>
+          SnackbarManager.error(getValidationError(error.message))
+        );
+        return;
+      }
+      if (err?.response?.data?.message)
+        SnackbarManager.error(getValidationError(err?.response?.data?.message));
     }
   );
 };

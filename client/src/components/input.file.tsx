@@ -1,13 +1,11 @@
-import { useAuthContext } from "@/hooks";
+import type { GenericInputFile } from "@/models";
 
-export const InputFile = () => {
-    const { handleProfileImage } = useAuthContext();
-
+export const InputFile = ({ name, multiple, accept, handleFile }: GenericInputFile) => {
     return (
-        <label className="flex justify-center">
+        <label className="flex justify-center mb-9">
             <span className="sr-only">Choose profile photo</span>
             <input
-                type="file" 
+                type="file"
                 className="
                     text-sm text-white
                     file:cursor-pointer
@@ -17,8 +15,10 @@ export const InputFile = () => {
                     file:bg-violet-50 file:text-slate-700
                     hover:file:bg-violet-100
                 "
-                onChange={handleProfileImage}
-                accept="image/*"
+                name={name}
+                onChange={handleFile}
+                multiple={multiple || false}
+                accept={accept}
             />
         </label>
     );

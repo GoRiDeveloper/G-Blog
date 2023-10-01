@@ -1,4 +1,4 @@
-import type { ChildrenType } from "@/types";
+import type { ChildrenType } from "@/models";
 import { AuthContextProvider } from "../context";
 
 export const Providers = ({ children }: ChildrenType) => {
