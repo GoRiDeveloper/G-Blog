@@ -1,9 +1,9 @@
-export const createUserAdapter = (user: any) => ({
-  token: user.token,
+export const createUserAdapter = (data: any) => ({
+  token: data.token,
   user: {
-    name: user.name,
-    email: user.email,
-    description: user.description,
-    profileImgUrl: user?.profileImgUrl,
+    name: data.user.name,
+    email: data.user.email,
+    description: data.user.description,
+    profileImgUrl: data.user?.profileImgUrl,
   },
 });

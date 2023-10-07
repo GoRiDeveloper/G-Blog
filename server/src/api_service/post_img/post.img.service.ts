@@ -1,3 +1,4 @@
+import type { UploadedFile } from "express-fileupload";
 import type { PostImgRepository } from "./post.img.types";
 import type { Post } from "../post/post.entity";
 import type { PostImg } from "./post.img.entity";
@@ -10,10 +11,7 @@ export class PostImgService {
     this.entityFactory = new EntityFactory(postImgRepository);
   }
 
-  async postNewImg(
-    post: Post,
-    postImgUrl: Express.Multer.File
-  ): Promise<PostImg> {
+  async postNewImg(post: Post, postImgUrl: UploadedFile): Promise<PostImg> {
     return (await this.entityFactory.create(
       { postImgUrl, post },
       true

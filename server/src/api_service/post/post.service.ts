@@ -1,5 +1,6 @@
+import type { UploadedFile } from "express-fileupload";
 import type { PostRepository, PostType } from "./post.types";
-import type { DisableType, MulterFilesType } from "../../types/global.types";
+import type { DisableType } from "../../types/global.types";
 import type { User } from "../user/user.entity";
 import type { Post } from "./post.entity";
 import { EntityFactory } from "../../services/factory/entity.factory";
@@ -41,7 +42,7 @@ export class PostService {
   async createPost(
     data: PostType,
     user: User,
-    files: MulterFilesType
+    files: UploadedFile[]
   ): Promise<void> {
     const post = (await this.entityFactory.create(
       { ...data, user },
@@ -49,7 +50,7 @@ export class PostService {
     )) as Post;
     if (Array.isArray(files)) {
       const postImgPromises = files.map(
-        async (file: Express.Multer.File) =>
+        async (file: UploadedFile) =>
           await postImgService.postNewImg(post, file)
       );
       await Promise.all(postImgPromises);

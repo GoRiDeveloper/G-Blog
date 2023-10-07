@@ -1,5 +1,6 @@
 import z from "zod";
 import type { Repository } from "typeorm";
+import type { UploadedFile } from "express-fileupload";
 import type { User } from "./user.entity";
 import { loginSchema, updatePasswordSchema, userSchema } from "./user.schema";
 
@@ -24,7 +25,7 @@ export type UserDto = {
   name: string;
   email: Email;
   description: string;
-  profileImgUrl?: string;
+  profileImgUrl?: string | UploadedFile;
 };
 export type UserType = z.infer<typeof userSchema>;
 export type LoginType = z.infer<typeof loginSchema>;

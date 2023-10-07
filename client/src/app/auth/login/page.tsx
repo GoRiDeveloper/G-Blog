@@ -2,20 +2,31 @@
 
 import type { BaseSyntheticEvent } from "react";
 import Link from "next/link";
-import { Form, LoaderSVG } from "@/components";
+import { redirect } from "next/navigation";
+import type { UserLogin } from "@/models";
+import { Form } from "@/components";
+import { useAppSelector } from "@/hooks";
 import { LoginData } from "../consts";
 import { useAuthContext } from "../hooks";
+import { SnackbarManager } from "@/utils";
 
 export default function Login(): JSX.Element {
     const { loadingEndpoint, handleLogin } = useAuthContext();
+    const { token } = useAppSelector((store) => store.user);
+
     const handleSubmit = (e: BaseSyntheticEvent) => {
         e.preventDefault();
-        const data = {
+        if (token)
+            return SnackbarManager.info("Tienes una sesión activa, cierra sesión y vuelve a iniciar sesión.");
+
+        const data: UserLogin = {
             email: e.target.email.value,
             password: e.target.password.value
         };
         handleLogin(data);
     };
+
+    if (token) redirect("/");
 
     return (
         <section className="max-w-7xl my-0 mx-auto w-full h-screen grid place-content-center relative z-10">
@@ -27,11 +38,11 @@ export default function Login(): JSX.Element {
                             {" "}Recuerdame
                         </label>
                         <Link className="text-end hover:underline" href="/auth/register"> ¿Olvidaste tu contraseña? </Link>
-                    </fieldset>                
-                    <fieldset className="mt-5 mb-3.5 text-center text-[.800rem] md:text-[.906rem]">
-                        <legend> ¿No tienes una cuenta? <Link className="font-semibold hover:underline" href="/auth/register"> Registrate </Link> </legend>
                     </fieldset>
                 </Form>
+                <fieldset className="mt-5 mb-3.5 text-center text-[.800rem] md:text-[.906rem]">
+                    <legend> ¿No tienes una cuenta? <Link className="font-semibold hover:underline" href="/auth/register"> Registrate </Link> </legend>
+                </fieldset>
             </article>
         </section>
     );

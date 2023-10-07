@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
+import type { UploadedFile } from "express-fileupload";
 import type { User } from "../../entities";
 import { catchAsync } from "../../utils/catch.async";
 import { HTTP_CODES } from "../../constants/http.codes.constants";
@@ -25,7 +26,11 @@ export const findAllPosts = catchAsync(
 export const createPost = catchAsync(
   async (req: Request, res: Response, _next: NextFunction) => {
     const { safeData, sessionUser, files } = req;
-    await postService.createPost(safeData?.body, sessionUser as User, files);
+    await postService.createPost(
+      safeData?.body,
+      sessionUser as User,
+      files?.postsImgs as UploadedFile[]
+    );
     return res.status(HTTP_CODES.CREATED).json({
       status: SUCCESS_STATUS.SUCCESS,
       message: SUCCESS_MESSAGES.POST_CREATED,

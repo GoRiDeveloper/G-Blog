@@ -14,13 +14,15 @@ export const login = (data: UserLogin) => {
   };
 };
 
-export const register = (data: RegisterUser) => {
+export const register = (data: RegisterUser | FormData) => {
   const Controller = loadAbort();
   return {
     call: axios.post<UserLogged>(
       "http://localhost:8080/api/v1/users/auth/sign-up",
       data,
-      { signal: Controller.signal }
+      {
+        signal: Controller.signal,
+      }
     ),
     controller: Controller,
   };

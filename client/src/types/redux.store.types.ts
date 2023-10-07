@@ -1,8 +1,9 @@
 import type { ThunkAction, Action } from "@reduxjs/toolkit";
 import type { makeStore } from "@/redux/store";
+import { userEmptyState } from "@/constants";
 
 export interface InitAppStore {
-  user: any;
+  user: typeof userEmptyState;
 }
 export type AppState = ReturnType<typeof makeStore.getState>;
 export type AppDispatch = typeof makeStore.dispatch;

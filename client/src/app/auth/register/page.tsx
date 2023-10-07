@@ -3,7 +3,6 @@
 import type { BaseSyntheticEvent } from "react"
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import type { RegisterUser } from "@/models";
 import { Form, ImageChange, InputFile } from "@/components";
 import { RegisterData } from "../consts";
 import { useAppSelector } from "@/hooks";
@@ -11,27 +10,28 @@ import { useAuthContext } from "../hooks";
 import { SnackbarManager } from "@/utils";
 
 export default function Register() {
-    const { token } = useAppSelector((store) => store.user);
     const { profileImage, loadingEndpoint, handleProfileImage, handleRegister } = useAuthContext();
-    const handleSubmit = (e: BaseSyntheticEvent) => {
+    const { token } = useAppSelector((store) => store.user);
+
+    const handleSubmit = async (e: BaseSyntheticEvent) => {
         e.preventDefault();
 
-        const { name, email, description, password, confirmPassword, profileImg } = e.target;
+        const form = new FormData();
+        const { name, description, email, password, confirmPassword, profileImgUrl } = e.target;
 
         if (password.value !== confirmPassword.value)
             return SnackbarManager.warning("Confirma corrctamente tu contraseña.");
 
-        const data: RegisterUser = {
-            name: name.value,
-            email: email.value,
-            description: description.value,
-            password: password.value,
-            profileImg: profileImg.files[0]
-        };
-
-        handleRegister(data);
+        form.append("name", name.value);
+        form.append("description", description.value);
+        form.append("email", email.value);
+        form.append("password", password.value);
+        form.append("profileImgUrl", profileImgUrl.files[0]);
+        console.log(form.get("profileImgUrl"));
+        
+        handleRegister(form);
     };
-console.log({token});
+
     if (token) redirect("/");
 
     return (
@@ -45,7 +45,7 @@ console.log({token});
                         </label>
                     </fieldset>
                     <ImageChange imageState={profileImage} alt="foto del usuario" />
-                    <InputFile name="profileImg" multiple={false} accept="image/*" handleFile={handleProfileImage} />
+                    <InputFile name="profileImgUrl" multiple={false} accept="image/*" handleFile={handleProfileImage} />
                 </Form>
                 <fieldset className="mt-5 mb-3.5 text-center text-[.800rem] md:text-[.906rem]">
                     <legend> ¿Ya tienes una cuenta? <Link className="font-semibold hover:underline" href="/auth/login"> Inicia Sesión </Link> </legend>
@@ -53,5 +53,4 @@ console.log({token});
             </article>
         </section>
     );
-
 };

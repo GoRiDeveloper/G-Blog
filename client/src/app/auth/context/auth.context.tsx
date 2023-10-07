@@ -4,7 +4,8 @@ import {
   createContext,
   useState,
   useCallback,
-  useMemo
+  useMemo,
+  FC
 } from "react";
 import type { ChangeInputEvent } from "@/types";
 import type{ ChildrenType, RegisterUser, UserLogin } from "@/models";
@@ -15,16 +16,18 @@ import { AxiosInterceptor } from "@/interceptors";
 
 AxiosInterceptor();
 
-export const AuthContext =
-  createContext({
-    handleProfileImage: (_e: ChangeInputEvent) => {},
-    handleRegister: (_data: RegisterUser) => {},
-    handleLogin: (_data: UserLogin) => {},
-    profileImage: "",
-    loadingEndpoint: false
-  });
+type AuthContextType = {
+  handleProfileImage: (e: ChangeInputEvent) => void;
+  handleRegister: (data: FormData) => Promise<void>;
+  handleLogin:(data: UserLogin) => Promise<void>;
+  profileImage: string;
+  loadingEndpoint: boolean;
+};
 
-export const AuthContextProvider = ({ children }: ChildrenType) => {
+export const AuthContext =
+  createContext<AuthContextType>({} as AuthContextType);
+
+export const AuthContextProvider: FC<ChildrenType> = ({ children }: ChildrenType): JSX.Element => {
   const { setUser } = useUserActions();
   const [profileImage, setProfileImage] = useState<string>(
     "/assets/img/default-user.webp"
@@ -37,18 +40,18 @@ export const AuthContextProvider = ({ children }: ChildrenType) => {
 
     setProfileImage(filePath);
   }, []);
-  const handleRegister = useCallback(async (data: RegisterUser) => {
-      const user = await callEndpoint(register(data));
-      if (user) {
-        const newUser = createUserAdapter(user);
-        setUser(newUser);
-      };
+  const handleRegister = useCallback(async (user: FormData | RegisterUser) => {
+    const response = await callEndpoint(register(user));
+    if (response?.data) {
+      const newUser = createUserAdapter(response?.data);
+      setUser(newUser);
+    };
   }, []);
-  const handleLogin = useCallback(async (data: UserLogin) => {
-    const session = await callEndpoint(login(data));
-    if (session) {
-      const user = createUserAdapter(session);
-      setUser(user);
+  const handleLogin = useCallback(async (user: UserLogin) => {
+    const response = await callEndpoint(login(user));
+    if (response?.data) {
+      const userLogged = createUserAdapter(response?.data);
+      setUser(userLogged);
     };
   }, []);
 

@@ -7,6 +7,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import type { UploadedFile } from "express-fileupload";
 import { GlobalStatus } from "../../types/global.types";
 import { Post } from "../post/post.entity";
 import { uploadAndGetUrl } from "../../services/firebase/firebase.service";
@@ -18,14 +19,14 @@ export class PostImg extends BaseEntity {
   id: number;
 
   @Column({ type: "varchar" })
-  postImgUrl: string;
+  postImgUrl: UploadedFile | string;
 
   @BeforeInsert()
   async getImgUrl() {
-    const file: unknown = this.postImgUrl;
+    const file = this.postImgUrl as UploadedFile;
     // Función para subir la imagen y obtener la URL.
     this.postImgUrl = await uploadAndGetUrl(
-      file as Express.Multer.File,
+      file,
       FILE_UPLOAD_NAMES.postImgs
     );
   }

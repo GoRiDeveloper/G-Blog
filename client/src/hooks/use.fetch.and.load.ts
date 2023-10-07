@@ -23,7 +23,6 @@ export const useFetchAndLoad = () => {
     }
 
     setLoading(false);
-
     return result;
   };
   const cancelEnpoint = () => {

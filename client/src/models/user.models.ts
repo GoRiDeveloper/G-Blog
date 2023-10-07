@@ -6,7 +6,7 @@ export interface RegisterUser {
   email: Email;
   description: string;
   password: string;
-  profileImg?: File;
+  profileImgUrl?: File;
 }
 export interface UserLogged {
   token: string;

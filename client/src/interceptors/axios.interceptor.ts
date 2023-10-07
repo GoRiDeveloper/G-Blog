@@ -33,13 +33,13 @@ export const AxiosInterceptor = () => {
     (err) => {
       console.log(err);
       if (err.code === "ERR_NETWORK")
-        SnackbarManager.error(getValidationError(err.code));
+        return SnackbarManager.error(getValidationError(err.code));
 
       const toAuth = () => redirect("/auth/login");
 
       if (err?.response?.status === 401 || err?.response?.status === 403) {
         SnackbarManager.error(getValidationError(err?.response?.data?.message));
-        toAuth();
+        return toAuth();
       }
       if (err?.response?.data?.errors) {
         err?.response?.data?.errors.forEach((error: any) =>
@@ -47,8 +47,12 @@ export const AxiosInterceptor = () => {
         );
         return;
       }
-      if (err?.response?.data?.message)
+      if (err?.response?.data?.message) {
+        if (err?.response?.data?.message.startsWith("Valor duplicado:")) {
+          return SnackbarManager.error(err?.response?.data?.message);
+        }
         SnackbarManager.error(getValidationError(err?.response?.data?.message));
+      }
     }
   );
 };

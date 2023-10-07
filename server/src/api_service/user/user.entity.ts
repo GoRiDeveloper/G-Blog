@@ -7,6 +7,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import type { UploadedFile } from "express-fileupload";
 import { type Email, UserRole } from "./user.types";
 import { Post } from "../post/post.entity";
 import { Comment } from "../comment/comment.entity";
@@ -52,15 +53,15 @@ export class User extends BaseEntity {
     nullable: true,
     name: "profile_img_url",
   })
-  profileImgUrl: string;
+  profileImgUrl: UploadedFile | string;
 
   @BeforeInsert()
   async getImgUrl() {
     if (this.profileImgUrl) {
-      const file: unknown = this.profileImgUrl;
+      const file = this.profileImgUrl as UploadedFile;
       // Función para subir la imagen y obtener la URL.
       this.profileImgUrl = await uploadAndGetUrl(
-        file as Express.Multer.File,
+        file,
         FILE_UPLOAD_NAMES.userPathName
       );
     }

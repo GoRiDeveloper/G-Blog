@@ -14,10 +14,10 @@ import {
 } from "../../../constants/utils.constants";
 import { schemaValidator } from "../../../middlewares/schema.middleware";
 import { loginSchema, updatePasswordSchema, userSchema } from "../user.schema";
-import { upload } from "../../../middlewares/multer.middleware";
 import { generateSchema } from "../../../schema/global.schema";
 import { idSchema } from "../../../schema/id.schema";
 import { validUser } from "../middlewares/user.middleware";
+import { upload } from "../../../middlewares/multer.middleware";
 
 export const authRouter: Router = Router();
 /* 
