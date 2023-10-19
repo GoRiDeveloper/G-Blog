@@ -18,7 +18,7 @@ AxiosInterceptor();
 
 type AuthContextType = {
   handleProfileImage: (e: ChangeInputEvent) => void;
-  handleRegister: (data: FormData) => Promise<void>;
+  handleRegister: (data: FormData | RegisterUser) => Promise<void>;
   handleLogin:(data: UserLogin) => Promise<void>;
   profileImage: string;
   loadingEndpoint: boolean;
@@ -46,6 +46,7 @@ export const AuthContextProvider: FC<ChildrenType> = ({ children }: ChildrenType
       const newUser = createUserAdapter(response?.data);
       setUser(newUser);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleLogin = useCallback(async (user: UserLogin) => {
     const response = await callEndpoint(login(user));
@@ -53,6 +54,7 @@ export const AuthContextProvider: FC<ChildrenType> = ({ children }: ChildrenType
       const userLogged = createUserAdapter(response?.data);
       setUser(userLogged);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const value = useMemo(

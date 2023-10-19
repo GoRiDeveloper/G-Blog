@@ -1,4 +1,3 @@
-import { UploadedFile } from "express-fileupload";
 import type {
   LoginType,
   AuthResult,
@@ -7,7 +6,7 @@ import type {
   UserType,
 } from "./user.types";
 import type { User } from "./user.entity";
-import { GlobalStatus } from "../../types/global.types";
+import { GlobalStatus, type MulterFileType } from "../../types/global.types";
 import { EntityFactory } from "../../services/factory/entity.factory";
 import { comparePass } from "./plugins/encrypt.plugin";
 import { getToken } from "../../plugins/token.plugin";
@@ -25,7 +24,7 @@ export class UserService {
   // Servicio para crear un usuario, subiendo la imagen de usuario si existe y creando el token de sesión.
   async createUser(
     userToCreate: User,
-    image: UploadedFile
+    image: MulterFileType
   ): Promise<AuthResult> {
     if (image) userToCreate.profileImgUrl = image;
     const user = (await this.entityFactory.create(userToCreate, true)) as User;

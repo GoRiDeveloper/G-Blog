@@ -8,6 +8,7 @@ import {
   handleCastError22001,
   handleCastError22P02,
   handleCastError2305,
+  handleFirestoreUnauthorized,
   handleJWTError,
   handleJWTExpiredError,
   handleMulterExceededLimit,
@@ -46,6 +47,8 @@ export const globalErrorHandler = (
       error = handleBcryptArgsRequired();
     if (err.code === ERROR_TYPES.multerExceededLimit)
       error = handleMulterExceededLimit();
+    if (err.code === ERROR_TYPES.firestoreUnauthorized)
+      error = handleFirestoreUnauthorized();
     if (err.parent?.code === ERROR_TYPES.sequelizeValidation)
       error = handleSequelizeValidatonError(err.errors);
 

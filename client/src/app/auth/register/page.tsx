@@ -16,20 +16,13 @@ export default function Register() {
     const handleSubmit = async (e: BaseSyntheticEvent) => {
         e.preventDefault();
 
-        const form = new FormData();
-        const { name, description, email, password, confirmPassword, profileImgUrl } = e.target;
+        const form = new FormData(e.target);
+        const { password, confirmPassword } = e.target;
 
         if (password.value !== confirmPassword.value)
             return SnackbarManager.warning("Confirma corrctamente tu contraseña.");
 
-        form.append("name", name.value);
-        form.append("description", description.value);
-        form.append("email", email.value);
-        form.append("password", password.value);
-        form.append("profileImgUrl", profileImgUrl.files[0]);
-        console.log(form.get("profileImgUrl"));
-        
-        handleRegister(form);
+        handleRegister(form)
     };
 
     if (token) redirect("/");

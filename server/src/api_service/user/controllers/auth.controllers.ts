@@ -1,5 +1,4 @@
 import type { Request, Response, NextFunction } from "express";
-import type { UploadedFile } from "express-fileupload";
 import type { User } from "../user.entity";
 import { catchAsync } from "../../../utils/catch.async";
 import { HTTP_CODES } from "../../../constants/http.codes.constants";
@@ -8,13 +7,11 @@ import { SUCCESS_STATUS } from "../../../constants/success.constants";
 
 export const signUp = catchAsync(
   async (req: Request, res: Response, _next: NextFunction) => {
-    const { safeData, files, file } = req;
-    console.log({ req });
-    console.log({ file });
-    console.log({ files });
+    const { safeData, file } = req;
+    console.log({file});
     const { token, user } = await userService.createUser(
       safeData?.body,
-      files?.profileImgUrl as UploadedFile
+      file
     );
 
     return res.status(HTTP_CODES.CREATED).json({

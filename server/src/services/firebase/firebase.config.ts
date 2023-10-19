@@ -1,14 +1,6 @@
-import { config } from "dotenv";
 import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
+import { firebaseConfig } from "../../config/config";
 
-config();
-
-const ENV = process.env;
-const firebaseApp = initializeApp({
-  apiKey: ENV.FIREBASE_API_KEY,
-  projectId: ENV.FIREBASE_PROJECT_ID,
-  storageBucket: ENV.FIREBASE_STORAGE,
-  appId: ENV.FIREBASE_API_ID,
-});
+const firebaseApp = initializeApp(firebaseConfig);
 export const storage = getStorage(firebaseApp);

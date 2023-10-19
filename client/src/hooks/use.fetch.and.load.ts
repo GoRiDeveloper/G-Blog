@@ -25,7 +25,7 @@ export const useFetchAndLoad = () => {
     setLoading(false);
     return result;
   };
-  const cancelEnpoint = () => {
+  const cancelEnpoint = (): void => {
     setLoading(false);
     controller && controller.abort();
   };
@@ -34,6 +34,7 @@ export const useFetchAndLoad = () => {
     return () => {
       cancelEnpoint();
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { loading, callEndpoint };

@@ -11,6 +11,7 @@ export interface GenericForm extends ChildrenType {
     icon?: FC<{ className: string }>;
   }[];
   loading?: boolean;
+  encType?: string;
   onSubmit: FormSubmitHandler;
 }
 export interface ChildrenType {

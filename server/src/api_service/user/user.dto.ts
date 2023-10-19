@@ -6,11 +6,9 @@ export const userDto = ({
   email,
   description,
   profileImgUrl,
-}: User): UserDto => {
-  return {
-    name,
-    email,
-    description,
-    profileImgUrl,
-  };
-};
+}: User): UserDto => ({
+  name,
+  email,
+  description,
+  profileImgUrl,
+});

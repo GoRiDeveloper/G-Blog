@@ -67,6 +67,7 @@ export const ERROR_MESSAGES = Object.freeze({
   COMMENT_REQUIRED: "El comentario es requerido.",
   COMMENT_STRING_FORMAT: "El comentario debe ser un texto.",
   COMMENT_NOT_FOUND: "El comentario no se encontro.",
+  FIREBASE_UNAUTHORIZED: "No se pudo cargar el/los fichero/s."
 });
 
 export const ERROR_TYPES = Object.freeze({
@@ -81,4 +82,5 @@ export const ERROR_TYPES = Object.freeze({
   sequelizeDatabase: "SequelizeDatabaseError",
   bcryptArgsRequired: "data and hash arguments required",
   multerExceededLimit: "LIMIT_UNEXPECTED_FILE",
+  firestoreUnauthorized: "storage/unauthorized"
 });

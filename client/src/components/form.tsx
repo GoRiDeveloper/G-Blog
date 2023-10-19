@@ -5,7 +5,7 @@ import type { GenericForm } from "@/models";
 import { Button, LoaderSVG } from "@/components";
 import { Input } from "./";
 
-export const Form: FC<GenericForm> = ({ children, title, fields, loading, onSubmit }: GenericForm): JSX.Element => {
+export const Form: FC<GenericForm> = ({ children, title, fields, loading, encType, onSubmit }: GenericForm): JSX.Element => {
     // const handleInputChange = (e: ChangeInputEvent) => {
     //     const { name, value, type, files, multiple } = e.target;
     //     const existsFiles = (type === "file" && multiple && files);
@@ -15,7 +15,7 @@ export const Form: FC<GenericForm> = ({ children, title, fields, loading, onSubm
     // };
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} encType={encType}>
             <h1 className="text-4xl text-center">{title}</h1>
             {fields.map(({
                 type,

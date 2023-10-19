@@ -7,11 +7,10 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import type { UploadedFile } from "express-fileupload";
 import { type Email, UserRole } from "./user.types";
 import { Post } from "../post/post.entity";
 import { Comment } from "../comment/comment.entity";
-import { GlobalStatus } from "../../types/global.types";
+import { GlobalStatus, MulterFileType } from "../../types/global.types";
 import { getHashPass } from "./plugins/encrypt.plugin";
 import { uploadAndGetUrl } from "../../services/firebase/firebase.service";
 import { FILE_UPLOAD_NAMES } from "../../constants/utils.constants";
@@ -53,12 +52,12 @@ export class User extends BaseEntity {
     nullable: true,
     name: "profile_img_url",
   })
-  profileImgUrl: UploadedFile | string;
+  profileImgUrl: MulterFileType | string;
 
   @BeforeInsert()
   async getImgUrl() {
     if (this.profileImgUrl) {
-      const file = this.profileImgUrl as UploadedFile;
+      const file = this.profileImgUrl as Express.Multer.File
       // Función para subir la imagen y obtener la URL.
       this.profileImgUrl = await uploadAndGetUrl(
         file,

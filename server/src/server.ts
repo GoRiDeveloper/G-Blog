@@ -1,9 +1,9 @@
-import { app } from "./app";
 import { initDatabase } from "./services/database/database.config";
-import { port } from "./config/config";
 import { SUCCESS_MESSAGES } from "./constants/success.constants";
-import { ERROR_MESSAGES } from "./constants/error.constants";
+import { app } from "./app";
+import { port } from "./config/config";
 import { SERVER_EVENTS } from "./constants/utils.constants";
+import { ERROR_MESSAGES } from "./constants/error.constants";
 
 (async () => {
   try {

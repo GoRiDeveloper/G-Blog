@@ -16,13 +16,18 @@ export const login = (data: UserLogin) => {
 
 export const register = (data: RegisterUser | FormData) => {
   const Controller = loadAbort();
+  const config = {
+    signal: Controller.signal,
+    headers: {
+      "Content-Type": "multipart/form-data"
+    }
+  };
+
   return {
     call: axios.post<UserLogged>(
       "http://localhost:8080/api/v1/users/auth/sign-up",
       data,
-      {
-        signal: Controller.signal,
-      }
+      config
     ),
     controller: Controller,
   };

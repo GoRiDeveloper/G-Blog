@@ -20,6 +20,9 @@ export const handleJWTExpiredError = () =>
 export const handleSequelizeDbError = () =>
   new AppError(ERROR_MESSAGES.SEQUELIZE_SAVE, HTTP_ERROR_CODES.INTERNAL_SERVER);
 
+export const handleFirestoreUnauthorized = () =>
+  new AppError(ERROR_MESSAGES.FIREBASE_UNAUTHORIZED, HTTP_ERROR_CODES.INTERNAL_SERVER);
+
 export const handleTORMDuplicate = (detail: string) =>
   new AppError(
     `${ERROR_MESSAGES.TYPEORM_DUPLICATE} ${detail}`,
