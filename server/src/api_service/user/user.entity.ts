@@ -14,6 +14,7 @@ import { GlobalStatus, MulterFileType } from "../../types/global.types";
 import { getHashPass } from "./plugins/encrypt.plugin";
 import { uploadAndGetUrl } from "../../services/firebase/firebase.service";
 import { FILE_UPLOAD_NAMES } from "../../constants/utils.constants";
+import { imgQuality } from "../../config/config";
 
 @Entity({ name: "users" })
 export class User extends BaseEntity {
@@ -61,7 +62,8 @@ export class User extends BaseEntity {
       // Función para subir la imagen y obtener la URL.
       this.profileImgUrl = await uploadAndGetUrl(
         file,
-        FILE_UPLOAD_NAMES.userPathName
+        FILE_UPLOAD_NAMES.userPathName,
+        imgQuality
       );
     }
   }

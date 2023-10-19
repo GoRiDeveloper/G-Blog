@@ -67,7 +67,8 @@ export const ERROR_MESSAGES = Object.freeze({
   COMMENT_REQUIRED: "El comentario es requerido.",
   COMMENT_STRING_FORMAT: "El comentario debe ser un texto.",
   COMMENT_NOT_FOUND: "El comentario no se encontro.",
-  FIREBASE_UNAUTHORIZED: "No se pudo cargar el/los fichero/s."
+  FIREBASE_UNAUTHORIZED: "No se pudo cargar el/los fichero/s.",
+  IMG_OPTIMIZED_ERROR: "No se pudo optimizar correctamente la imagén debido a un error interno."
 });
 
 export const ERROR_TYPES = Object.freeze({

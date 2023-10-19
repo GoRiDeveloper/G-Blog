@@ -38,3 +38,7 @@ export type MulterFilesType =
 export type DisableType = {
   status: GlobalStatus;
 };
+export type ToWebpParams = {
+  buffer: Buffer;
+  quality: number;
+};

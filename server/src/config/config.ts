@@ -7,6 +7,7 @@ const ENV = process.env;
 export const mode = ENV.NODE_ENV;
 export const port = Number(ENV.PORT);
 export const salt = Number(ENV.SALT);
+export const imgQuality = 75;
 
 export const modes = Object.freeze({
   dev: "development",

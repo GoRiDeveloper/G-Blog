@@ -87,7 +87,8 @@ export const getValidationError = (err: any) => {
     "El comentario es requerido.": "El comentario es requerido.",
     "El comentario debe ser un texto.": "El comentario debe ser un texto.",
     "El comentario no se encontro.": "El comentario no se encontro.",
-    "No se pudo cargar el/los fichero/s.": "No se pudo cargar el/los fichero/s."
+    "No se pudo cargar el/los fichero/s.": "No se pudo cargar el/los fichero/s.",
+    "No se pudo optimizar correctamente la imagén debido a un error interno.": "No se pudo optimizar correctamente la imagén debido a un error interno."
   };
   return codeMatcher[err];
 };

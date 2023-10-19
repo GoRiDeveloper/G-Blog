@@ -11,6 +11,7 @@ import { GlobalStatus } from "../../types/global.types";
 import { Post } from "../post/post.entity";
 import { uploadAndGetUrl } from "../../services/firebase/firebase.service";
 import { FILE_UPLOAD_NAMES } from "../../constants/utils.constants";
+import { imgQuality } from "../../config/config";
 
 @Entity({ name: "post_imgs" })
 export class PostImg extends BaseEntity {
@@ -26,7 +27,8 @@ export class PostImg extends BaseEntity {
     // Función para subir la imagen y obtener la URL.
     this.postImgUrl = await uploadAndGetUrl(
       file,
-      FILE_UPLOAD_NAMES.postImgs
+      FILE_UPLOAD_NAMES.postImgs,
+      imgQuality
     );
   }
 
