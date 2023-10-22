@@ -1,6 +1,19 @@
 import type { TypeWithKey } from "@/models";
 
-export const getValidationError = (err: any) => {
+/**
+ * Function to get an appropriate error message for the user.
+ * 
+ * @param { string } err - Error message.
+ * 
+ * @returns { string } Appropriate error message.
+ */
+// Función para obtener un mensaje de error adecuado para el usuario.
+export const getValidationError = (err: string): string => {
+
+  /**
+   * List of errors with their appropriate message.
+   */
+  // Lista de errores con su mensaje adecuado.
   const codeMatcher: TypeWithKey<string> = {
     ERR_NETWORK: "Error de conexión",
     "El usuario no se encontro.": "El usuario no se encontro.",
@@ -90,5 +103,7 @@ export const getValidationError = (err: any) => {
     "No se pudo cargar el/los fichero/s.": "No se pudo cargar el/los fichero/s.",
     "No se pudo optimizar correctamente la imagén debido a un error interno.": "No se pudo optimizar correctamente la imagén debido a un error interno."
   };
+  // Devolvemos el mensaje encontrado.
   return codeMatcher[err];
+  
 };

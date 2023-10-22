@@ -5,7 +5,22 @@ import type { GenericForm } from "@/models";
 import { Button, LoaderSVG } from "@/components";
 import { Input } from "./";
 
-export const Form: FC<GenericForm> = ({ children, title, fields, loading, encType, onSubmit }: GenericForm): JSX.Element => {
+/**
+ * Generic form component.
+ * 
+ * @param { GenericForm } param0 - Proops a generic form.
+ * 
+ * @returns { JSX.Element } Generic form component.
+ */
+// Componente de un formulario génerico.
+export const Form: FC<GenericForm> = ({
+    children,
+    title,
+    fields,
+    loading,
+    encType,
+    onSubmit
+}: GenericForm): JSX.Element => {
     // const handleInputChange = (e: ChangeInputEvent) => {
     //     const { name, value, type, files, multiple } = e.target;
     //     const existsFiles = (type === "file" && multiple && files);

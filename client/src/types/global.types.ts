@@ -7,13 +7,32 @@ import type {
 } from "react";
 import type { TypeWithKey } from "@/models";
 
+/**
+ * Type E-Mail. 
+ */
+// Tipado para un correo electrónico.
 export type Email = `${string}@${string}.${string}`;
-export type ChangeInputEvent = ChangeEvent<HTMLInputElement>;
-export type FormSubmitHandler = FormEventHandler<HTMLFormElement>;
-export type GenericFormState = [TypeWithKey<any>, Dispatch<SetStateAction<{}>>];
-export type ChangeInputEventHandler = ChangeEventHandler<HTMLInputElement>;
 
-export enum LocalStorageKeys {
-  REFRESH_TOKEN = "refreshToken",
-  TOKEN = "token",
-}
+/**
+ * Type for change event input.
+ */
+// Tipado para un evento de cambio en un input.
+export type ChangeInputEvent = ChangeEvent<HTMLInputElement>;
+
+/**
+ * Type submit form event.
+ */
+// Tipado para un evento de envio de un formulario.
+export type FormSubmitHandler = FormEventHandler<HTMLFormElement>;
+
+/**
+ * Type for generic form state.
+ */
+// Tipado para el estado de un formulario génerico.
+export type GenericFormState = [TypeWithKey<any>, Dispatch<SetStateAction<{}>>];
+
+/**
+ * Type for change input event.
+ */
+// Tipado para un evento de cambio en un input.
+export type ChangeInputEventHandler = ChangeEventHandler<HTMLInputElement>;

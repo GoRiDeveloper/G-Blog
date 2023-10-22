@@ -1,6 +1,10 @@
 import type { FC } from "react";
 import { useSnackbar, type ProviderContext, type VariantType } from "notistack";
 
+/**
+ * 
+ */
+// Referencia para .
 let useSnackbarRef: ProviderContext;
 export const SnackbarConfig: FC = () => {
   useSnackbarRef = useSnackbar();

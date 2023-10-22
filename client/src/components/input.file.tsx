@@ -1,6 +1,19 @@
 import type { GenericInputFile } from "@/models";
 
-export const InputFile = ({ name, multiple, accept, handleFile }: GenericInputFile) => {
+/**
+ * Component of a generic file type input.
+ * 
+ * @param { GenericInputFile } param0 - Props a generic input file.
+ * 
+ * @returns { JSX.Element } Component of a generic file type input.
+ */
+// Componente de un input de tipo file génerico.
+export const InputFile = ({
+    name,
+    multiple,
+    accept,
+    handleFile
+}: GenericInputFile): JSX.Element => {
     return (
         <label className="flex justify-center mb-9">
             <span className="sr-only">Choose profile photo</span>

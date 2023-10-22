@@ -3,6 +3,14 @@
 import type { FC } from "react";
 import type { InputProps } from "@/models";
 
+/**
+ * Component of a generic input.
+ * 
+ * @param { InputProps } param0 - Props a generic input.
+ * 
+ * @returns { JSX.Element } Component of a generic input.
+ */
+// Componente de un input génerico.
 export const Input: FC<InputProps> = ({
     children,
     type,

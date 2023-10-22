@@ -1,5 +1,9 @@
 import { MailSVG, LockSVG, UserIdSVG, MessageSVG } from "@/components";
 
+/**
+ * Form information to login to the application.
+ */
+// Objeto donde esta la información del formulario para iniciar sesión en la aplicación.
 export const LoginData = {
   name: "Iniciar Sesión",
   fields: [
@@ -20,6 +24,10 @@ export const LoginData = {
   ],
 };
 
+/**
+ * Form information to sign up to the application.
+ */
+// Objeto donde esta la información del formulario para registrarse en la aplicación.
 export const RegisterData = {
   name: "Registrate",
   fields: [

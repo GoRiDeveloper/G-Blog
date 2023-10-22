@@ -9,22 +9,52 @@ import { useAppSelector } from "@/hooks";
 import { useAuthContext } from "../hooks";
 import { SnackbarManager } from "@/utils";
 
-export default function Register() {
+/**
+ * Registration Page Component.
+ * 
+ * @returns { JSX.Element } Registration Page Component.
+ */
+// Componente de registro de usuario.
+export default function Register(): JSX.Element {
+
+    // Elementos del contexto de autenticación.
     const { profileImage, loadingEndpoint, handleProfileImage, handleRegister } = useAuthContext();
+
+    // Token del usuario en sesión.
     const { token } = useAppSelector((store) => store.user);
 
-    const handleSubmit = async (e: BaseSyntheticEvent) => {
+    /**
+     * Function to send the information of a user record.
+     * 
+     * @param { BaseSyntheticEvent } e - Synthetic event to control the submission of the form.
+     * 
+     * @returns Promise of handling a user's registration.
+     */
+    // Función para enviar la información de un registro de usuario.
+    const handleSubmit = async (e: BaseSyntheticEvent): Promise<void> => {
+
+        // Prevenir la acción por defecto del evento.
         e.preventDefault();
 
+        /**
+         * Form to send.
+         */
+        // Formulario a enviar.
         const form = new FormData(e.target);
+
+        // Contraseñas del formulario.
         const { password, confirmPassword } = e.target;
 
-        if (password.value !== confirmPassword.value)
-            return SnackbarManager.warning("Confirma corrctamente tu contraseña.");
+        // Verificamos la confirmación de contraseña.
+        if (password.value === confirmPassword.value)
+            // Función para manejar el envio del registro de usuario.
+            handleRegister(form);
+        
+        SnackbarManager.warning("Confirma corrctamente tu contraseña.");
 
-        handleRegister(form)
     };
 
+    // Verificamos si existe un token, para redirigir a la página principal.
     if (token) redirect("/");
 
     return (
