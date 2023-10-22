@@ -22,7 +22,7 @@ export default function RootLayout(
     return (
         <main className="bg-gradient-to-bl dark:from-sky-800 dark:via-purple-900 dark:to-sky-800">
             <Providers>
-                {children}
+                { children }
                 <div className="ocean max-w-full z-0 absolute bottom-0">
                     <div className="wave"></div>
                     <div className="wave"></div>

@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import type { UserLogin } from "@/models";
 import { Form } from "@/components";
 import { useAppSelector } from "@/hooks";
-import { LoginData } from "../consts";
+import { LoginData } from "../models";
 import { useAuthContext } from "../hooks";
 import { SnackbarManager } from "@/utils";
 

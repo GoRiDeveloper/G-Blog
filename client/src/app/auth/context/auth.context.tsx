@@ -10,12 +10,11 @@ import {
 } from "react";
 import type { ChangeInputEvent } from "@/types";
 import type { ChildrenType, RegisterUser, UserLogged, UserLogin } from "@/models";
-import type { AuthContextType } from "../models";
-import { StaticFilesPaths } from "../consts";
 import { createUserAdapter } from "@/adapters";
 import { useFetchAndLoad, useUserActions } from "@/hooks";
 import { login, register } from "@/services";
 import { AxiosInterceptor } from "@/interceptors";
+import { StaticFilesPaths, type AuthContextType } from "../models";
 
 // Interceptor de solicitudes http realizadas con axios.
 AxiosInterceptor();
