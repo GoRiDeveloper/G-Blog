@@ -6,7 +6,7 @@ import { getInLocalStorage } from "@/utils";
  * Get the token if there is an authenticated user in the application.
  */
 // Obtenemos el token si hay un usuario autenticado en la aplicación.
-const session = getInLocalStorage(LocalStorageEntities.USER) as UserLogged;
+const session = getInLocalStorage(LocalStorageEntities.USER);
 
 /**
  * Slice to configure the state of global users.

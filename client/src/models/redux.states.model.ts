@@ -6,7 +6,7 @@ import { UserLogged } from ".";
  */
 // Contrato para inicializar la configuración de los estados globales en la aplicación.
 export interface InitAppStore {
-  user: typeof UserEmptyState;
+  user: typeof UserEmptyState
 };
 /**
  * Initial user model in the application.

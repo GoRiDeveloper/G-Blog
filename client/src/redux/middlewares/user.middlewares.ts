@@ -25,9 +25,11 @@ export const handlerDataInLocalStorage: Middleware =
   // AFTER UPDATE STATE / DESPUES DE ACTUALIZAR EL ESTADO
 
     // Verificamos si la acción es para crear un usuario en la aplicación.
+    const userState = store.getState();
+
     if (actionType[1] === UserActionsModel.createUser)
       // Guardamos a ese usuario en el Local Storage.
-      saveInLocalStorage(actionType[0], JSON.stringify(store.getState()));
+      saveInLocalStorage(actionType[0], JSON.stringify({ ...userState.user }));
 
     // Verificamos si la acción es para eliminar a ese usuario en la aplicación.
     if (actionType[1] === UserActionsModel.resetUser)

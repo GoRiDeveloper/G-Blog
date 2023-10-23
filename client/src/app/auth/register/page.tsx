@@ -26,4 +26,5 @@ export default function Register(): JSX.Element {
             </article>
         </section>
     );
+    
 };

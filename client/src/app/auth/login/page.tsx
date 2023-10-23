@@ -8,7 +8,7 @@ export default function Login(): JSX.Element {
 
     // Token del usuario en sesión.
     const { token } = useAppSelector((store) => store.user);
-
+    
     // Verificamos si existe un token, para redirigir a la página principal.
     if (token) redirect("/");
 
@@ -20,4 +20,5 @@ export default function Login(): JSX.Element {
             </article>
         </section>
     );
+
 };

@@ -13,7 +13,7 @@ export const uploadAndGetUrl = async (
     buffer: file?.buffer,
     quality
   }) as Buffer;
-  const upload = await uploadBytes(elementRef, optimizedBuffer);
-  const refToDownload = ref(storage, upload.metadata.fullPath);
+  const upload = await uploadBytes(elementRef, optimizedBuffer)
+  const refToDownload = ref(storage, upload?.metadata.fullPath);
   return await getDownloadURL(refToDownload);
 };

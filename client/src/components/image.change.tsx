@@ -17,8 +17,19 @@ export const ImageChange: FC<GenericImageChange> = ({
     alt
 }: GenericImageChange): JSX.Element => {
     return (
-        <figure className="shw-img w-[9rem] h-[9rem] my-[1.875rem] border border-white/[.2] overflow-hidden relative left-2/4 translate-x-[-50%] flex justify-center items-center rounded-[50%] before:bg-blue-400">
-            <Image className="w-full h-full object-cover object-center" src={imageState} alt={alt} />
+        <figure className="
+            shw-img w-[9rem] h-[9rem] my-[1.875rem] border 
+            border-white/[.2] overflow-hidden relative left-2/4 
+            translate-x-[-50%] flex justify-center items-center 
+            rounded-[50%] before:bg-blue-400
+        ">
+            <Image
+                className="w-full h-full object-cover object-center"
+                src={imageState}
+                alt={alt}
+                width={500}
+                height={500}
+            />
         </figure>
     );
 };

@@ -2,7 +2,7 @@
 
 import type { FC } from "react";
 import type { ChildrenType } from "@/models";
-import { AuthContextProvider } from "../context";
+import { AuthProvider } from "./auth.provider";
 
 /**
  * Authentication section providers.
@@ -16,8 +16,8 @@ export const Providers: FC<ChildrenType> = (
     { children }: ChildrenType
 ): JSX.Element => {
     return (
-        <AuthContextProvider>
+        <AuthProvider>
             {children}
-        </AuthContextProvider>
+        </AuthProvider>
     );
 };

@@ -42,12 +42,12 @@ export const SignUpForm: FC = (): JSX.Element => {
         const { password, confirmPassword } = e.target;
 
         // Verificamos la confirmación de contraseña.
-        if (password.value === confirmPassword.value)
+        if (password.value !== confirmPassword.value)
+            // Modal para avisar al usuario que debe verificar sus contraseñas.
+            SnackbarManager.warning(AuthMessagesModel.errorVerifyingYourPassword);
+        else
             // Función para manejar el envio del registro de usuario.
             handleRegister(form);
-        
-        // Modal para avisar al usuario que debe verificar sus contraseñas.
-        SnackbarManager.warning(AuthMessagesModel.errorVerifyingYourPassword);
 
     };
 
@@ -59,4 +59,5 @@ export const SignUpForm: FC = (): JSX.Element => {
             </RememberButton>
         </Form>
     );
+    
 };
