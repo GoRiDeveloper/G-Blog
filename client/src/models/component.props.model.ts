@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import type { AxiosResponse } from "axios";
-import type { AxiosCall } from "./";
+import type { AxiosCall } from ".";
 import type { ChangeInputEventHandler, FormSubmitHandler } from "@/types";
 
 /**

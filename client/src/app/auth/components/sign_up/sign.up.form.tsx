@@ -24,7 +24,7 @@ export const SignUpForm: FC = (): JSX.Element => {
      * 
      * @param { BaseSyntheticEvent } e - Synthetic event to control the submission of the form.
      * 
-     * @returns Promise of handling a user's registration.
+     * @returns { void } Promise of handling a user's registration.
      */
     // Función para enviar la información de un registro de usuario.
     const handleSubmit = async (e: BaseSyntheticEvent): Promise<void> => {

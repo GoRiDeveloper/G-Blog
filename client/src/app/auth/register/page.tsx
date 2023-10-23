@@ -1,9 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useAppSelector } from "@/hooks";
-import { SignUpForm } from "../components";
+import { AuthLegend, SignUpForm } from "../components";
 
 /**
  * Registration Page Component.
@@ -23,9 +22,7 @@ export default function Register(): JSX.Element {
         <section className="max-w-7xl my-0 mx-auto w-full h-screen grid place-content-center relative z-10">
             <article className="register max-w-[31.25rem] max-h-[35rem] md:w-[31.25rem] border border-white/[.2] text-white rounded-xl py-7 px-10 backdrop-blur-md shadow-md overflow-hidden overflow-y-auto">
                 <SignUpForm />
-                <fieldset className="mt-5 mb-3.5 text-center text-[.800rem] md:text-[.906rem]">
-                    <legend> ¿Ya tienes una cuenta? <Link className="font-semibold hover:underline" href="/auth/login"> Inicia Sesión </Link> </legend>
-                </fieldset>
+                <AuthLegend legend="¿Ya tienes cuenta?" toRedirectMessage="Inicia Sesión" redirectHref="/auth/login" />
             </article>
         </section>
     );
