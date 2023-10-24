@@ -70,3 +70,20 @@ export interface GenericInputFile {
   accept?: string;
   handleFile?: ChangeInputEventHandler;
 };
+
+/**
+ * Generic model of the set of a route for a Link.
+ */
+// Modelo génerico del conjunto de una ruta para un Link.
+export interface Route {
+  path: string;
+  name: string;
+};
+
+/**
+ * Generic model for a route navigator.
+ */
+// Modelo génerico para un navegador de rutas.
+export interface NavigatorProps {
+  pathNames: Route[]
+};
