@@ -2,8 +2,9 @@
 
 import type { FC } from "react";
 import type { GenericForm } from "@/models";
-import { Button, LoaderSVG } from "@/components";
-import { Input } from "./";
+import { LoaderSVG } from "./svgs";
+import { Input } from "./input";
+import { Button } from "./button";
 
 /**
  * Generic form component.
@@ -28,7 +29,6 @@ export const Form: FC<GenericForm> = ({
 
     //     setFormData({ ...formData, [name]: inputValue });
     // };
-
     return (
         <form onSubmit={onSubmit} encType={encType}>
             <h1 className="text-4xl text-center">{title}</h1>
@@ -46,11 +46,20 @@ export const Form: FC<GenericForm> = ({
                     required={required}
                     name={name}
                 >
-                    {Icon && (<Icon className="w-6 h-6 fill-white absolute right-5 top-2/4 translate-y-[-50%]" />)}
+                    {Icon && (<Icon  className="
+                        w-6 h-6 fill-white absolute right-5
+                        top-2/4 translate-y-[-50%]
+                    " />)}
                 </Input>
             ))}
             {children}
-            <Button className="flex justify-center items-center w-full h-11 mb-9 bg-white rounded-[2.5rem] text-slate-700 shadow-xl font-semibold" type="submit">
+            <Button
+                className="
+                    flex justify-center items-center w-full h-11 mb-9 bg-white 
+                    rounded-[2.5rem] text-slate-700 shadow-xl font-semibold
+                "
+                type="submit"
+            >
                 {title}
                 {loading && (
                     <svg className="animate-spin h-5 w-5 ml-1.5 ..." viewBox="0 0 24 24">

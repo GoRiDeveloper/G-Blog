@@ -27,8 +27,8 @@ export const ImageChange: FC<GenericImageChange> = ({
                 className="w-full h-full object-cover object-center"
                 src={imageState}
                 alt={alt}
-                width={500}
-                height={500}
+                width={127}
+                height={127}
             />
         </figure>
     );

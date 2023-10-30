@@ -10,14 +10,19 @@ import type { NavigatorProps } from "@/models";
  * @returns { JSX.Element } Generic component for a route navigator.
  */
 // Componente génerico para un navegador de rutas.
-export const Navigator: FC<NavigatorProps> = ({ pathNames }: NavigatorProps): JSX.Element => {
+export const Navigator: FC<NavigatorProps> = ({
+    pathNames,
+    classNames
+}: NavigatorProps): JSX.Element => {
     return (
-        <div>
-            {pathNames.map(pathName => (
-                <Link href={pathName.path}>
-                    {pathName.name}
-                </Link>
+        <>
+            {pathNames.map(({ id, path, name }) => (
+                <li key={id} className={classNames.linkClass}>
+                    <Link className={classNames.anchorTagClass} href={path}>
+                        {name}
+                    </Link>
+                </li>
             ))}
-        </div>
+        </>
     );
 };

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ChildrenType } from "@/models";
+import { HomeButton } from "@/components";
 import { Providers } from "./providers";
 
 // Metadata para la pagina de autenticación de la aplicación.
@@ -28,6 +29,7 @@ export default function RootLayout(
                     <div className="wave"></div>
                 </div>
             </Providers>
+            <HomeButton />
         </main>
     );
 };
