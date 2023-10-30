@@ -2,7 +2,7 @@
  * Application API base url variable.
  */
 // Variable de la url base de la api de la aplicación.
-export const BASE_URL = process.env.BLOG_API_URL;
+export const BASE_URL = process.env.NEXT_PUBLIC_BLOG_API_URL;
 
 /**
  * Variable of the base version of the api.
