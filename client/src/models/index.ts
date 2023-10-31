@@ -9,3 +9,4 @@ export * from './boundary.model';
 export * from './static.files.path.model';
 export * from './app.api.model';
 export * from './app.path.model';
+export * from "./auth.messages.model";

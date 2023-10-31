@@ -8,6 +8,7 @@ export const NavbarListLinks: Route[] = [
     { id: '1245', path: '/info', name: 'Publicaciones' },
     { id: '1246', path: '/info', name: 'Explorar' },
     { id: '1241', path: '/info', name: 'Información' },
+    { id: 'hbhjbh', path: "/main/profile", name: 'Mi Perfil' }
 ];
 
 /**

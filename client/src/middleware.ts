@@ -10,7 +10,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 // Middleware para utilizarse antes de cualquier renderizado de parte del servidor.
 export function middleware(request: NextRequest): NextResponse<unknown> | undefined {
     if (request.nextUrl.pathname === '/') return NextResponse.redirect(new URL('/main/home', request.url));
-}
+};
 
 export const config = {
     matcher: '/',

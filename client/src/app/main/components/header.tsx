@@ -11,7 +11,7 @@ import { Logo } from "./";
 export const Header: FC = (): JSX.Element => {
     return (
         <header className="
-            fixed py-7 px-10 border-b border-white/[.2]
+            sticky py-7 px-10 border-b border-white/[.2]
             text-white backdrop-blur-md shadow-md w-full
         ">
             <Logo />

@@ -1,12 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
-import { redirect } from "next/navigation";
-import { useAppSelector } from "@/hooks";
-import { SnackbarManager } from "@/utils";
+import { useAuth } from "@/hooks";
 import { AppPath } from "@/models";
 import { LoginForm, AuthLegend } from "../components";
-import { AuthMessagesModel } from "../models";
 
 /**
  * User authentication component.
@@ -16,21 +12,8 @@ import { AuthMessagesModel } from "../models";
 // Componente de autenticación de usuario.
 export default function Login(): JSX.Element {
 
-    // Token del usuario en sesión.
-    const { token } = useAppSelector((store) => store.user);
-    
-    useEffect(() => {
-
-        // Verificamos si existe un token, para redirigir a la página principal
-        // y avisar al usuario que tiene una sesión activa.
-        if (token) {
-            SnackbarManager.info(AuthMessagesModel.activeSession);
-            redirect("/");
-        };
-
-        return () => {};
-        
-    }, [token]);
+    // Custom Hook para verificar si el usuario esta autenticado.
+    useAuth({ redirectNotAuth: false });
 
     return (
         <section className="max-w-7xl my-0 mx-auto w-full h-screen grid place-content-center relative z-10">
