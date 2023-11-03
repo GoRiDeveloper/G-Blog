@@ -4,6 +4,16 @@ import { HTTP_CODES } from "../../../constants/http.codes.constants";
 import { SUCCESS_STATUS } from "../../../constants/success.constants";
 import { userService } from "../../../services/api_services";
 
+export const getSessionUser = catchAsync(
+    async (req: Request, res: Response, _next: NextFunction) => {
+      const { sessionUser } = req;
+      return res.status(HTTP_CODES.OK).json({
+        status: SUCCESS_STATUS.SUCCESS,
+        sessionUser
+      });
+    }
+);
+
 export const updateUser = catchAsync(
   async (req: Request, res: Response, _next: NextFunction) => {
     const { safeData } = req;

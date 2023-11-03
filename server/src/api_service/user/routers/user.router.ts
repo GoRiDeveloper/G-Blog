@@ -10,11 +10,19 @@ import {
   protect,
   protectAccountOwner,
 } from "../../../middlewares/auth.middleware";
-import { disableUser, updateUser } from "../controllers/user.controllers";
+import {
+  disableUser,
+  updateUser,
+  getSessionUser
+} from "../controllers/user.controllers";
 
 export const usersRouter: Router = Router();
 // Separación de las rutas de autenticación.
 usersRouter.use("/auth", authRouter);
+
+// Ruta para obtener la información del usuario en sesión.
+usersRouter.get("/me", protect, getSessionUser);
+
 usersRouter
   .use(
     "/:id",

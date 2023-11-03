@@ -15,7 +15,7 @@ export const HomeButton: FC = (): JSX.Element => {
             className="
                 fixed mt-6 ms-6 top-0 w-11 h-11 bg-white flex z-30
                 justify-center items-center rounded-[2.5rem] cursor-pointer
-                transition-transform hover:scale-110
+                transition-transform opacity-50 hover:scale-110 hover:opacity-100
             "
             href={AppPath.HOME}
             scroll={false}

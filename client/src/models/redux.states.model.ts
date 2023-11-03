@@ -1,5 +1,5 @@
 import type { Email } from "@/types";
-import { UserLogged } from ".";
+import { UserLogged, StaticFilesPaths } from ".";
 
 /**
  * Contract to initialize the global states configuration in the application.
@@ -18,6 +18,6 @@ export const UserEmptyState: UserLogged = {
       name: "",
       email: "" as Email,
       description: "",
-      profileImgUrl: "",
+      profileImgUrl: StaticFilesPaths.USER_IMG_DEFAULT,
     },
 };

@@ -1,7 +1,11 @@
-import type { FC } from 'react';
+import type { FC, CSSProperties } from 'react';
 import type { AxiosResponse } from 'axios';
 import type { AxiosCall } from '.';
-import type { ChangeInputEventHandler, FormSubmitHandler } from '@/types';
+import type {
+    ChangeInputEventHandler,
+    FormSubmitHandler,
+    ImagePlaceholder
+} from '@/types';
 
 /**
  * Model of a generic form.
@@ -13,7 +17,7 @@ export interface GenericForm extends ChildrenType {
     loading?: boolean;
     encType?: string;
     onSubmit: FormSubmitHandler;
-}
+};
 
 /**
  * Generic input model in a form.
@@ -25,7 +29,7 @@ export interface Field {
     placeholder?: string;
     required: boolean;
     icon?: FC<{ className: string }>;
-}
+};
 
 /**
  * Default model of the properties of a component in React.
@@ -33,7 +37,7 @@ export interface Field {
 // Modelo por defecto de las propiedades de un componente en React.
 export interface ChildrenType {
     children: React.ReactNode;
-}
+};
 
 /**
  * Model of the properties of a generic input.
@@ -46,7 +50,7 @@ export interface InputProps extends ChildrenType {
     name?: string;
     value?: string;
     handleInputChange?: ChangeInputEventHandler;
-}
+};
 
 /**
  * Custom Hook model to make controlled requests.
@@ -55,7 +59,7 @@ export interface InputProps extends ChildrenType {
 export interface IFetchAndLoad {
     loading: boolean;
     callEndpoint: (axiosCall: AxiosCall<any>) => Promise<AxiosResponse<any>>;
-}
+};
 
 /**
  * Generic model of the dynamic image component.
@@ -64,7 +68,13 @@ export interface IFetchAndLoad {
 export interface GenericImageChange {
     imageState: string;
     alt: string;
-}
+    width?: number;
+    height?: number;
+    style?: CSSProperties;
+    priority?: boolean;
+    placeholder?: ImagePlaceholder;
+    blurDataUrl?: string;
+};
 
 /**
  * Model of the properties of a generic input of type file.
@@ -75,7 +85,7 @@ export interface GenericInputFile {
     multiple?: boolean;
     accept?: string;
     handleFile?: ChangeInputEventHandler;
-}
+};
 
 /**
  * Generic model of the set of a route for a Link.
@@ -85,7 +95,7 @@ export interface Route {
     id: string;
     path: string;
     name: string;
-}
+};
 
 /**
  * Generic model of the set of classes for the components of a route for a Link.
@@ -94,7 +104,7 @@ export interface Route {
 export interface NavClassName {
     linkClass: string;
     anchorTagClass: string;
-}
+};
 
 /**
  * Generic model for a route navigator.
@@ -103,7 +113,7 @@ export interface NavClassName {
 export interface NavigatorProps {
     pathNames: Route[];
     classNames: NavClassName;
-}
+};
 
 /**
  * Generic model for the route navigator list component.
@@ -111,7 +121,7 @@ export interface NavigatorProps {
 // Modelo génerico para el componente de la lista del navegador de rutas.
 export interface NavbarListProps {
     activeNavbar: boolean;
-}
+};
 
 /**
  * Generic model for the button component to handle the state of the main navigation menu.
@@ -119,4 +129,4 @@ export interface NavbarListProps {
 // Modelo génerico para el componente del botón para manejar el estado del menu de navegación principal.
 export interface NavMenuButtonProps extends NavbarListProps {
     handleActiveNavbar: Function;
-}
+};

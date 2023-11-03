@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { useEffect } from "react";
 import { SnackbarManager } from "@/utils";
 import { AppPath, AuthMessagesModel } from "@/models";
@@ -18,9 +18,15 @@ export const useAuth = ({ redirectNotAuth }: UseAuthHook) => {
     const { token } = useAppSelector((store) => store.user);
 
     /**
+     * Router app.
+     */
+    // Router de la aplicación.
+    const router = useRouter();
+
+    /**
      * Condition to redirect the user or not.
      */
-    // Condición para redirijir o no a el usuario.
+    // Condición para redireccionar o no a el usuario.
     const condition = (redirectNotAuth && !token) || (!redirectNotAuth && token);
 
     useEffect(() => {
@@ -34,7 +40,7 @@ export const useAuth = ({ redirectNotAuth }: UseAuthHook) => {
                 ? SnackbarManager.info(AuthMessagesModel.activeSession)
                 : SnackbarManager.error(AuthMessagesModel.notAuth);
 
-            redirect(AppPath.HOME);
+            router.push(AppPath.HOME, { scroll: false });
             
         };
 

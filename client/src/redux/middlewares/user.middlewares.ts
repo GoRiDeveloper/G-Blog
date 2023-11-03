@@ -11,7 +11,6 @@ import { UserActionsModel } from "@/models";
 export const handlerDataInLocalStorage: Middleware =
   (store) => (next) => (action): void => {
   // BEFORE UPDATE STATE / ANTES DE ACTUALIZAR EL ESTADO
-
     /**
      * Create an array to determine the type of action to be performed on the user's global states in the application.
      */

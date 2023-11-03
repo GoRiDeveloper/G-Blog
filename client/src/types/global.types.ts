@@ -36,3 +36,11 @@ export type GenericFormState = [TypeWithKey<any>, Dispatch<SetStateAction<{}>>];
  */
 // Tipado para un evento de cambio en un input.
 export type ChangeInputEventHandler = ChangeEventHandler<HTMLInputElement>;
+
+/**
+ * Types of placeholder that an image can have.
+ */
+// Tipos de placeholder que una imagen puede tener.
+export type ImagePlaceholder = "blur" | "empty" | `data:image/${string}`;
+
+export type ImageLoading = "lazy" | "eager";

@@ -3,10 +3,10 @@ import { UserEmptyState, LocalStorageEntities, type UserLogged } from "@/models"
 import { getInLocalStorage } from "@/utils";
 
 /**
- * Get the token if there is an authenticated user in the application.
+ * Get the user if there is an authenticated user in the application.
  */
-// Obtenemos el token si hay un usuario autenticado en la aplicación.
-const session = getInLocalStorage(LocalStorageEntities.USER);
+// Obtenemos el usuario si hay un usuario autenticado en la aplicación.
+const session = getInLocalStorage(LocalStorageEntities.USER) || UserEmptyState;
 
 /**
  * Slice to configure the state of global users.
@@ -18,7 +18,7 @@ export const userSlice = createSlice({
   name: LocalStorageEntities.USER,
 
   // Estado inicial del estado global.
-  initialState: session ? session : UserEmptyState,
+  initialState: session,
 
   // Funcionalidades/Acciones del estado global.
   reducers: {

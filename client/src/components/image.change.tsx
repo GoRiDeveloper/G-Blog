@@ -14,7 +14,13 @@ import type { GenericImageChange } from "@/models";
 // Componente de una imagen génerica.
 export const ImageChange: FC<GenericImageChange> = ({
     imageState,
-    alt
+    alt,
+    width,
+    height,
+    blurDataUrl,
+    style,
+    priority,
+    placeholder
 }: GenericImageChange): JSX.Element => {
     return (
         <figure className="
@@ -27,8 +33,12 @@ export const ImageChange: FC<GenericImageChange> = ({
                 className="w-full h-full object-cover object-center"
                 src={imageState}
                 alt={alt}
-                width={127}
-                height={127}
+                width={width || 127}
+                height={height || 127}
+                placeholder={placeholder}
+                blurDataURL={blurDataUrl}
+                priority={priority || true}
+                style={style}
             />
         </figure>
     );
