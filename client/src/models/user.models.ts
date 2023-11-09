@@ -2,6 +2,17 @@ import type { File } from "buffer";
 import type { Email } from "../types";
 
 /**
+ * User model.
+ */
+// Modelo del usuario.
+export interface User {
+  name: string;
+  email: Email;
+  description: string;
+  profileImgUrl?: string;
+};
+
+/**
  * Model for registering a new user.
  */
 // Modelo del registro de un nuevo usuario.
@@ -19,12 +30,7 @@ export interface RegisterUser {
 // Modelo de un usuario autenticado.
 export interface UserLogged {
   token: string;
-  user: {
-    name: string;
-    email: Email;
-    description: string;
-    profileImgUrl?: string;
-  };
+  user: User;
 };
 
 /**

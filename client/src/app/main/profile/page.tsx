@@ -1,7 +1,8 @@
 "use client";
 
+import { Suspense } from "react";
 import { useAuth } from "@/hooks";
-import { Any } from "./components";
+import { ProfileSkeleton, User } from "./components";
 
 /**
  * User profile component.
@@ -10,16 +11,14 @@ import { Any } from "./components";
 export default function Profile(): JSX.Element {
 
     // Custom Hook para verificar si el usuario esta autenticado.
-    useAuth({ redirectNotAuth: true });
+    const { token } = useAuth({ redirectNotAuth: true });
 
     return (
         <>
-        <h1 className="text-center text-4xl my-5 text-white"> Mi Perfil </h1>
-        <Any />
-        {/* <ImageChange
-            imageState={user.profileImgUrl}
-            alt={user.name}
-        /> */}
+            <h1 className="text-center text-4xl my-5 text-white"> Mi Perfil </h1>
+            <Suspense fallback={<ProfileSkeleton />} >
+                <User token={token} />
+            </Suspense>
         </>
     );
 

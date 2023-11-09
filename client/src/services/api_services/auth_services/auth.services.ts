@@ -1,7 +1,15 @@
 import axios from 'axios';
-import type { RegisterUser, UserLogged, UserLogin } from '@/models/user.models';
+import type {
+    RegisterUser,
+    UserLogged,
+    UserLogin
+} from '@/models/user.models';
 import { loadAbort } from '@/utils';
-import { AxiosCall, BASE_PATH, API_PATHS } from '@/models';
+import {
+    BASE_PATH,
+    API_PATHS,
+    type AxiosCall
+} from '@/models';
 
 /**
  * Service to auth a user in the application API.

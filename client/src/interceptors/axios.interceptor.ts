@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+//import { redirect } from "next/navigation";
 import axios, {
   type AxiosRequestHeaders,
   type InternalAxiosRequestConfig,
@@ -15,7 +15,7 @@ import {
  * @returns { void } Intercept requests functionality to handle request headers and possible errors in the http response.
  */
 // Interceptor de las peticiones http realizadas con axios.
-export const AxiosInterceptor = (): void => {
+export const AxiosInterceptor = (): any => {
 
   /**
    * Function to update the headers of http requests.
@@ -81,19 +81,22 @@ export const AxiosInterceptor = (): void => {
   const errorResponseInterceptor: (
     (error: AxiosError<any>) => never | void
   ) | null | undefined = (err: AxiosError<any>): never | void => {
-    console.log(err);
+    console.log({ InterceptorError: err });
     // Verificamos si el error es de conexión al servidor para dar respuesta al usuario.
     if (err.code === "ERR_NETWORK")
       return SnackbarManager.error(getValidationError(err.code));
 
-    // Función para devolver al usuario a la página de autenticación.
-    const toAuth = (): never => redirect("/auth/login");
+    // // Función para devolver al usuario a la página de autenticación.
+    // const toAuth = (): void => {
+    //   redirect("/auth/login");
+    // };
 
-    // Verificamos si el error es de autorización para dar respuesta al usuario.
-    if (err?.response?.status === 401 || err?.response?.status === 403) {
-      SnackbarManager.error(getValidationError(err?.response?.data?.message));
-      return toAuth();
-    };
+    // // Verificamos si el error es de autorización para dar respuesta al usuario.
+    // if (err?.response?.status === 401 || err?.response?.status === 403) {
+    //   SnackbarManager.error(getValidationError(err?.response?.data?.message));
+    //   toAuth();
+    // };
+    if (err.response?.status === 401 || err.response?.status === 403) return;
 
     // Verificamos si son multiples errores para dar respuesta al usuario.
     if (err?.response?.data?.errors) {
@@ -104,7 +107,7 @@ export const AxiosInterceptor = (): void => {
         .forEach((error: any) =>
           SnackbarManager.error(getValidationError(error.message)
         )
-      );
+        );
       return;
     };
 

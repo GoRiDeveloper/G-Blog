@@ -23,4 +23,5 @@ export const BASE_PATH = `${BASE_URL}${BASE_VERSION}`;
 export enum API_PATHS {
     LOGIN_PATH = '/users/auth/sign-in',
     REGISTER_PATH = '/users/auth/sign-up',
+    USER_INFO_PATH = "/users/me"
 }

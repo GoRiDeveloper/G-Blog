@@ -12,7 +12,11 @@ interface UseAuthHook {
  * Custom Hook to check if a user is authenticated.
  */
 // Custom Hook para verificar si un usuario esta autenticado.
-export const useAuth = ({ redirectNotAuth }: UseAuthHook) => {
+export const useAuth = ({
+    redirectNotAuth
+}: UseAuthHook): {
+    token: string
+} => {
 
     // Token del usuario en sesión.
     const { token } = useAppSelector((store) => store.user);
@@ -47,5 +51,7 @@ export const useAuth = ({ redirectNotAuth }: UseAuthHook) => {
         return () => {};
 
     }, [token]);
+
+    return { token };
     
 };

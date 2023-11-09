@@ -130,3 +130,11 @@ export interface NavbarListProps {
 export interface NavMenuButtonProps extends NavbarListProps {
     handleActiveNavbar: Function;
 };
+
+/**
+ * Generic model for the user profile component.
+ */
+// Modelo génerico para el componente de pefil de usuario.
+export interface UserProps {
+    token: string;
+};

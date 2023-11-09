@@ -6,7 +6,6 @@
 // Página principal de la aplicación.
 export default function Home(): JSX.Element {
   return (
-    <>
-    </>
+<></>
   );
 };
