@@ -1,8 +1,5 @@
-import { AxiosError } from "axios";
 import type { User } from "@/models";
 import { userInfo } from "@/services";
-import { SnackbarManager, getValidationError } from "@/utils";
-import { NextResponse } from "next/server";
 
 /**
  * Function to request a user's information.
@@ -12,10 +9,13 @@ import { NextResponse } from "next/server";
  * @returns { Promise<User | null> } Null response or user information.
  */
 // Función para hacer la petición de la información de un usuario.
-export const getUserInfo = async (token: string): Promise<User | any> => {
+export const getUserInfo = async (token: string): Promise<User | null> => {
+
+    // Devolvemos una respuesta nula si no hay token.
+    if (!token) return null;
 
     // Desestructuramos la petición y su controlador.
-    const { call, controller } = userInfo(token);
+    const { call } = userInfo(token);
 
     try {
 
@@ -23,7 +23,7 @@ export const getUserInfo = async (token: string): Promise<User | any> => {
         const { data } = await call;
 
         // Devolvemos la información obtenida de la petición.
-        return data;
+        return data.user;
 
     } catch (error) { return null;};
 

@@ -7,7 +7,12 @@ import {
     type AxiosCall
 } from "@/models";
 
-export const userInfo = (token: string): AxiosCall<User> => {
+interface UserResponse extends User {
+    status: string;
+    user: User
+};
+
+export const userInfo = (token: string): AxiosCall<UserResponse> => {
 
     // Controlador de la petición.
     const Controller = loadAbort();
@@ -22,7 +27,7 @@ export const userInfo = (token: string): AxiosCall<User> => {
 
     // Devolvemos la información de la petición de autenticación.
     return {
-        call: axios.get<User>(`${BASE_PATH}${API_PATHS.USER_INFO_PATH}`, config),
+        call: axios.get<UserResponse>(`${BASE_PATH}${API_PATHS.USER_INFO_PATH}`, config),
         controller: Controller
     };
 

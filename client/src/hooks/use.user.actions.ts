@@ -23,7 +23,15 @@ export const useUserActions = () => {
   // Función para crear un nuevo usuario en el estado global de la aplicación.
   const setUser = (newUser: UserLogged) => dispatch(createUser(newUser));
 
+  /**
+   * Function to restart the user in session.
+   * 
+   * @returns Functionality to remove the user session.
+   */
+  // Función para reiniciar el usuario en sesión.
+  const removeUser = () => dispatch(resetUser());
+
   // Devolvemos las funcionalidades para manipular los estados de los usuarios en la aplicacion.
-  return { setUser };
+  return { setUser, removeUser };
   
 };

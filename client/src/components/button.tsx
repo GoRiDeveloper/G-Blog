@@ -1,5 +1,9 @@
-import { FC } from "react";
-import type { ChildrenType } from "@/models";
+import type { FC, PropsWithChildren, MouseEventHandler } from "react";
+
+interface ButtonProps {
+    className?: string;
+    onClick?: MouseEventHandler<HTMLButtonElement>
+};
 
 /**
  * Component of a generic button.
@@ -9,8 +13,8 @@ import type { ChildrenType } from "@/models";
  * @returns { JSX.Element } Generic Button Component
  */
 // Componente de un botón generico.
-export const Button: FC<ChildrenType | any> = (
-    props: ChildrenType | any
+export const Button: FC<PropsWithChildren<ButtonProps>> = (
+    props: PropsWithChildren
 ): JSX.Element => {
     return (
         <button {...props}>{props.children}</button>

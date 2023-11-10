@@ -11,7 +11,7 @@ import { getUserInfo } from "../lib";
  * @returns { Promise<JSX.Element | never> } User profile component.
  */
 // Componente del perfil de usuario.
-export const User = async ({ token }: UserProps): Promise<JSX.Element | never> => {
+export const User = async ({ token }: UserProps): Promise<JSX.Element> => {
 
     /**
      * Request to obtain the information of the user in session.
